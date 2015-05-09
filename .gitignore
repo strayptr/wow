@@ -3,6 +3,7 @@
 # Visual Studio files.
 #
 *.suo
+*.userprefs
 obj/
 [Bb]in
 [Dd]ebug*/
