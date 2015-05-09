@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# if mono isn't installed, alert the user.
+if [[ -z "`which mono`" ]]; then
+  echo "mono isn't installed."
+  echo "\tOS X: try running \`brew install mono\`"
+  echo "\tLinux: try running \`sudo apt-get install mono-complete\`"
+  exit 1
+fi
+
+# get the scriptfile's path.
+scriptdir="`realpath \"$0\"`"
+scriptdir="`dirname \"$scriptdir\"`"
+
+# execute the visualizer, passing in any commandline args.
+mono "$scriptdir/x86/Visualizer/Visualizer.exe" $*
+

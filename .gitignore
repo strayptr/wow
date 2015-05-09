@@ -1,12 +1,16 @@
+#
+# ignore the build dir.
+#
+/build/
 
 #
-# Visual Studio files.
+# ignore Visual Studio user prefs and build files.
 #
 *.suo
 *.userprefs
-obj/
-[Bb]in
-[Dd]ebug*/
-[Rr]elease*/
+/src/**/obj/
+/src/**/[Bb]in
+/src/**/[Dd]ebug*/
+/src/**/[Rr]elease*/
 
 
