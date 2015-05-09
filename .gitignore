@@ -1,0 +1,11 @@
+
+#
+# Visual Studio files.
+#
+*.suo
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+
+
