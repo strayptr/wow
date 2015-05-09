@@ -117,7 +117,12 @@ namespace Visualizer
                 if (IsFileAllowed(file))
                 {
                     if (this.LoadSignalFromFile(file))
+                    {
+                        // update the header bar's text to indicate a file is open.
+                        string basename = System.IO.Path.GetFileName(file);
+                        this.Text = String.Format("{0} ({1})", Program.Title, basename);
                         return;
+                    }
                 }
             }
         }

@@ -41,10 +41,18 @@ namespace Visualizer
                 if (_mainForm == null)
                 {
                     _mainForm = new MainForm();
+                    _title = _mainForm.Text;
                     _mainForm.Show();
                 }
                 return _mainForm;
             }
+        }
+
+        //-----------------------------------------------------------------------------
+        static string _title;
+        public static string Title
+        {
+            get { return _title; }
         }
     }
 }
