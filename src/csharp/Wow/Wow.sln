@@ -4,9 +4,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visualizer", "Visualizer\Visualizer.csproj", "{8E2AD688-9C97-4F2A-ACC1-332D42D61FB1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{20235B91-D804-4ECA-9B55-E0FC40725040} = {20235B91-D804-4ECA-9B55-E0FC40725040}
+		{77AABEE0-2C4B-488B-8B2E-CB07298572DC} = {77AABEE0-2C4B-488B-8B2E-CB07298572DC}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controls", "Controls\Controls.csproj", "{20235B91-D804-4ECA-9B55-E0FC40725040}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{77AABEE0-2C4B-488B-8B2E-CB07298572DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +25,10 @@ Global
 		{20235B91-D804-4ECA-9B55-E0FC40725040}.Debug|x86.Build.0 = Debug|x86
 		{20235B91-D804-4ECA-9B55-E0FC40725040}.Release|x86.ActiveCfg = Release|x86
 		{20235B91-D804-4ECA-9B55-E0FC40725040}.Release|x86.Build.0 = Release|x86
+		{77AABEE0-2C4B-488B-8B2E-CB07298572DC}.Debug|x86.ActiveCfg = Debug|x86
+		{77AABEE0-2C4B-488B-8B2E-CB07298572DC}.Debug|x86.Build.0 = Debug|x86
+		{77AABEE0-2C4B-488B-8B2E-CB07298572DC}.Release|x86.ActiveCfg = Release|x86
+		{77AABEE0-2C4B-488B-8B2E-CB07298572DC}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

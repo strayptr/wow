@@ -7,11 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common.DSP;
 
 namespace Visualizer
 {
     public partial class MainForm : Form
     {
+        //=============================================================================
+        // Variables
+        //=============================================================================
+
+        private ISignal _signal;
+
+        //=============================================================================
+        // Methods
+        //=============================================================================
+
         //-----------------------------------------------------------------------------
         public MainForm()
         {
@@ -24,10 +35,35 @@ namespace Visualizer
         }
 
         //-----------------------------------------------------------------------------
-        private bool IsFileAllowed(string filename)
+        public bool LoadSignalFromFile(string filepath)
+        {
+            if (!IsFileAllowed(filepath))
+                return false;
+
+            if (filepath.ToLower().EndsWith(".iq"))
+            {
+                // for now, just fill in some values for testing purposes.  (Eventually 
+                // we'll prompt the user to provide this info.)
+                HackRFSignal.Settings settings;
+                settings.Frequency = 27000000;
+                settings.SamplesPerSec = 10000000;
+
+                _signal = new HackRFSignal(settings, filepath);
+
+                Complex[] samples = new Complex[2048];
+                _signal.ReadSamples(samples, 0, 2048);
+
+                return true;
+            }
+            
+            throw new NotImplementedException("Support for that filetype isn't implemented yet.");
+        }
+
+        //-----------------------------------------------------------------------------
+        bool IsFileAllowed(string filepath)
         {
             // only allow .iq and .wav files.
-            return filename.ToLower().EndsWith(".iq") || filename.ToLower().EndsWith(".wav");
+            return filepath.ToLower().EndsWith(".iq") || filepath.ToLower().EndsWith(".wav");
         }
 
         //=============================================================================
@@ -75,13 +111,15 @@ namespace Visualizer
         {
             // get the list of files the user's dropping.
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            string str = "";
             foreach (string file in files)
             {
+                // try to load the first valid file.
                 if (IsFileAllowed(file))
-                    str += String.Format(" '{0}'", file);
+                {
+                    if (this.LoadSignalFromFile(file))
+                        return;
+                }
             }
-            Program.MainForm.Text = str;
         }
     }
 }
