@@ -26,29 +26,36 @@ Currently it does nothing at all except display a blank form.  Super useful!  On
 
 Building from source was designed to be completely effortless.  It's my hope that by making "developer experience" a first-class feature then people will feel encouraged to mess with the code and maybe submit a pull request.
 
-#### OS X
+#### os x
 
 `wow` runs fine on OS X.  I just haven't gotten around to writing/testing the build instructions yet.
 
 For now, download a release from the Releases page, extract it, navigate to wow/bin and double click on 'wow' to launch it.  (Or run e.g. `path_to_wow/wow/bin/wow` from a terminal.)
 
-#### Ubuntu / Debian
+#### ubuntu / debian
 
 ```bash
 # update your sources.
 sudo apt-get update
+
 # install git and checkout the repo.
 sudo apt-get install git -y
+
 git clone https://github.com/strayptr/wow
 cd wow
+
 # install realpath.
 sudo apt-get install realpath -y
+
 # install Mono.  Time to go grab a cup of coffee Kappa
 sudo apt-get install mono-complete -y
+
 # build the project.
 etc/make_build.py
+
 # run it.
 build/wow-such-signal/wow/bin/wow
+
 # alternatively, install it somewhere, add the bin folder to your
 # PATH, and then type wow to run it.
 cp -r build/wow-such-signal /usr/local/
