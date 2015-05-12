@@ -34,6 +34,8 @@ For now, download a release from the Releases page, extract it, navigate to wow/
 
 #### ubuntu / debian
 
+Copy-paste this into your terminal to get the code and build it.  (This is only one step removed from "wget and run this shell script", which is terrible practice since you have no idea what the code is doing.  But this way at least it's semi-transparent...)
+
 ```bash
 
 cat <<'EOF' > build_wow.sh
@@ -60,19 +62,52 @@ EOF
 
 # build.
 bash ./build_wow.sh
+```
 
-# run.
+Run it like so:
+
+```bash
 cd wow; build/wow-such-signal/wow/bin/wow
 ```
 
-Alternatively, copy wow somewhere useful and add the `wow/bin` folder to your `PATH`.  Then you can run wow just by typing `wow` in any terminal:
+To install wow someplace useful and add it to your `PATH`, paste this:
 
 ```bash
-cp -r build/wow-such-signal /usr/local/
-export PATH="$PATH:/usr/local/wow-such-signal/wow/bin"
-wow
+cat <<'EOS' > install-wow.sh
+
+# install wow someplace...
+someplace="/usr/local/wow"
+
+if [ -d "$someplace" ]; then
+  >&2 "$someplace exists, aborting."
+  exit 1
+fi
+
+# copy it over.
+sudo cp -r build/wow-such-signal/wow "$someplace"
+
+# add wow to our PATH by appending this to our bashrc.
+cat <<EOF >>~/.bashrc
+#
+# wow signal analyzer.  https://git.io/wow
+#
+export PATH="\$PATH:$someplace/bin"
+EOF
+
+EOS
+
+# install and reload our bashrc.
+cd wow
+bash ./install-wow.sh; source ~/.bashrc
 ```
 
-(Eventually you'll be able to analyze hackrf signal files using e.g. `wow some-signal-recording.iq`, where `some-signal-recording.iq` is filled with quadrature samples.  It will be able to analyze most types of signal files, but supporting the default capture type of `hackrf_transfer` is the first milestone.)
+Now you can run wow from anywhere:
+
+```bash
+cd ~/
+wow
+````
+
+Eventually you'll be able to analyze hackrf signal files using e.g. `wow some-signal-recording.iq`, where `some-signal-recording.iq` is filled with quadrature samples.  It will be able to analyze most types of signal files, but supporting the default capture type of `hackrf_transfer` is the first milestone.
 
 
