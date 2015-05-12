@@ -15,6 +15,33 @@ ProgramName = "wow"
 # Functionality
 #==============================================================================
 
+# http://stackoverflow.com/questions/595305/python-path-of-script
+def scriptpath():
+    """
+    Returns the absolute path of the current scriptfile.  
+    """
+    return os.path.realpath(__file__)
+
+def projectpath():
+    """
+    Returns the absolute path to our project's root directory, with
+    the assumption that this script file is underneath
+    '$projectpath/etc/' and that the script will never be located
+    within a nested folder named 'etc', e.g. this is not allowed:
+    '$projectpath/etc/foo/etc/script.py'
+    """
+    # get the absolute path to the current scriptfile.
+    path = scriptpath()
+    # we're somewhere underneath '$projectpath/etc/*', so traverse up
+    # until reaching '$projectpath/etc/'
+    while os.path.basename(path).lower() != 'etc':
+        # if we've reached /etc or / then our assumptions are
+        # incorrect.
+        assert(os.path.normpath(path) not in [os.path.normpath(p) for p in ['/', '/etc']])
+        path = os.path.dirname(path)
+    # traverse up once more to reach our project's root dir.
+    return os.path.dirname(path)
+
 def query_yes_no(question, default="yes"):
     """Ask a yes/no question via raw_input() and return their answer.
 
@@ -187,14 +214,23 @@ parser.add_argument('-e', '--etcdir',
     help="The directory containing other deployment files." )
      
 parser.add_argument('-v', '--version',
-    help="Name the deployment tarball with a version number, like v0.0.01" )
+    default="such-signal",
+    help="Append the deployment tarball with a version number, such as v0.0.01" )
 
 
 #==============================================================================
 # Main
 #==============================================================================
 
-def main():
+def gen_binaries():
+    cwdir = os.getcwd()
+    try:
+        os.chdir(os.path.join(projectpath(), 'src/csharp/Wow'))
+        os.system('xbuild /p:Configuration=Release Wow.sln')
+    finally:
+        os.chdir(cwdir)
+
+def gen_build():
     # build the destination directory path.
     vername = '%s-%s' % (ProgramName, args.version)
     # build the deployment tarball name.
@@ -226,6 +262,10 @@ def main():
     if os.path.exists(tarball):
         raise Exception("Tarball file already exists: %s" % tarball)
     make_tarfile(tarball, base)
+
+def main():
+    gen_binaries()
+    gen_build()
 
 if __name__ == "__main__":
     args = parser.parse_args()
