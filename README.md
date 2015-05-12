@@ -24,7 +24,7 @@ Currently it does nothing at all except display a blank form.  Super useful!  On
 
 ### build
 
-Building from source was designed to be completely effortless.  It's my hope that by making "developer experience" a first-class feature (and by treating this as a super cereal project for super cereal people) then folks will feel encouraged to mess with the code and maybe submit a pull request.
+Building from source was designed to be completely effortless.  It's my hope that by making "developer experience" a first-class feature then people will feel encouraged to mess with the code and maybe submit a pull request.
 
 #### OS X
 
