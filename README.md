@@ -18,13 +18,13 @@ Currently it does nothing at all except display a blank form.  Super useful!  On
 
 - (or run `wow-0.0.01/win/bin/wow` from a terminal or cmd.exe.  Same thing.)
 
-- (Linux): optionally copy `wow-0.0.1/wow` somewhere like `/usr/local` and then add `/usr/local/wow/bin` to your PATH.  Now you can type `wow` in your terminal!  Wow!
+- (Linux): optionally copy `wow-0.0.1/wow` somewhere like `/usr/local` and then add `/usr/local/wow/bin` to your PATH: `export PATH="$PATH:/usr/local/wow/bin"`.  Now you can type `wow` in your terminal.  Thrilling.
 
 - (Windows): optionally create a shortcut to `wow.cmd`
 
 ### build
 
-Building from source was designed to be completely effortless.  It's my hope that by making "developer experience" a first-class feature, people will feel encouraged to mess with the code and maybe submit a pull request.
+Building from source was designed to be completely effortless.  It's my hope that by making "developer experience" a first-class feature (and by treating this as a super cereal project for super cereal people) then folks will feel encouraged to mess with the code and maybe submit a pull request.
 
 #### OS X
 
@@ -41,6 +41,8 @@ sudo apt-get update
 sudo apt-get install git -y
 git clone https://github.com/strayptr/wow
 cd wow
+# install realpath.
+sudo apt-get install realpath -y
 # install Mono.  Time to go grab a cup of coffee Kappa
 sudo apt-get install mono-complete -y
 # build the project.
