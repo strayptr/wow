@@ -1,6 +1,17 @@
 #!/bin/bash
 
-# if mono isn't installed, alert the user.
+# include common functionality.
+source "`dirname "$BASH_SOURCE"`/etc/common.sh"
+
+#==============================================================================
+# Fail if any of our required vars are missing.
+#==============================================================================
+depends_on                        \
+  ScriptPath 
+
+#==============================================================================
+# If mono isn't installed, alert the user.
+#==============================================================================
 if [[ -z "`which mono`" ]]; then
   echo "mono isn't installed."
   echo "\tOS X: try running \`brew install mono\`"
@@ -8,10 +19,8 @@ if [[ -z "`which mono`" ]]; then
   exit 1
 fi
 
-# get the scriptfile's path.
-scriptdir="`realpath \"$0\"`"
-scriptdir="`dirname \"$scriptdir\"`"
-
-# execute the visualizer, passing in any commandline args.
-mono "$scriptdir/x86/Visualizer/Visualizer.exe" $*
+#==============================================================================
+# Execute the visualizer, passing in any commandline args.
+#==============================================================================
+mono "$ScriptPath/x86/Visualizer/Visualizer.exe" $*
 

@@ -160,21 +160,41 @@ def sln_binfiles(slnpath):
 
 def rmfile(filename):
     if os.path.exists(filename):
-        print 'rm "%s"' % filename
+        print 'rm %s' % quot(filename)
         os.unlink(filename)
 
 def rmrfdir(dirpath):
     """Extremely dangerous.  Use with caution."""
     if os.path.isdir(dirpath):
-        print 'rm -rf "%s"' % dirpath
+        print 'rm -rf %s' % quot(dirpath)
         shutil.rmtree(dirpath)
 
 def copyfile(src, dst, copymode=True):
-    print 'copying "%s"  ->  "%s"' % (src, dst)
-    shutil.copymode
+    print 'cp %s %s' % (quot(src), quot(dst))
     shutil.copyfile(src, dst)
     if copymode:
         shutil.copymode(src, dst)
+
+def cp_r(src, dst):
+    print 'cp -r %s %s' % (quot(src), quot(dst))
+    #shutil.copytree(src, dst) # won't work when dst exists, and sadly there's no accepted solution.
+    for filename in os.listdir(src):
+        dstp = joinpath(dst, filename)
+        srcp = joinpath(src, filename)
+        if os.path.isfile(srcp):
+            mkdir_p(os.path.dirname(dstp))
+            copyfile(srcp, dstp)
+        elif os.path.isdir(srcp):
+            cp_r(srcp, dstp)
+
+def make_tarfile(output_filename, source_dir):
+    """Build a .tar.gz for an entire directory tree."""
+    with tarfile.open(output_filename, "w:gz") as tar:
+        tar.add(source_dir, arcname=os.path.basename(source_dir))
+    print 'cd %s; tar cvzf %s %s/' % (
+            quot(os.path.dirname(output_filename)),
+            quot(os.path.basename(output_filename)),
+            quot(os.path.basename(source_dir)))
 
 def sln_deploy(dst, slnpath):
     slnpath = getslnpath(slnpath)
@@ -188,21 +208,8 @@ def sln_deploy(dst, slnpath):
         copyfile(binfile, os.path.join(path, filename))
 
 def etc_deploy(dst, etcpath):
-    # deploy each file under 'etc/bin' to '$dst/bin'
-    binpath = os.path.join(etcpath, 'bin')
-    for filename in os.listdir(binpath):
-        filepath = os.path.join(binpath, filename)
-        if os.path.isfile(filepath):
-            copyfile(filepath, os.path.join(dst, 'bin', filename))
-
-def make_tarfile(output_filename, source_dir):
-    """Build a .tar.gz for an entire directory tree."""
-    with tarfile.open(output_filename, "w:gz") as tar:
-        tar.add(source_dir, arcname=os.path.basename(source_dir))
-    print 'cd %s; tar cvzf %s %s/' % (
-            quot(os.path.dirname(output_filename)),
-            quot(os.path.basename(output_filename)),
-            quot(os.path.basename(source_dir)))
+    # recursively copy the contents of the 'etc/bin' folder '$prefix/$vername/$ProgramName/bin'
+    cp_r(os.path.join(etcpath, 'bin'), os.path.join(dst, 'bin'))
 
 #==============================================================================
 # Cmdline
@@ -234,6 +241,9 @@ parser.add_argument('-v', '--version',
 #==============================================================================
 # Main
 #==============================================================================
+
+def joinpath(*args):
+    return os.path.normpath(os.path.join(*args))
 
 def mkpath(childpath):
     return os.path.normpath(os.path.join(projectpath(), childpath))
@@ -268,7 +278,7 @@ def gen_build():
     mkdir_p(dst)
     # deploy sln binaries.
     sln_deploy(dst, args.sourcedir)
-    # deploy each file under 'etc/bin' to '$prefix/$vername/$ProgramName/bin'
+    # recursively copy the contents of the 'etc/bin' folder '$prefix/$vername/$ProgramName/bin'
     etc_deploy(dst, args.etcdir)
     # build the deployment tarball.
     if os.path.exists(tarball):
