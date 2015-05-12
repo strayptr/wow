@@ -15,6 +15,15 @@ ProgramName = "wow"
 # Functionality
 #==============================================================================
 
+import re
+WS = re.compile(r'\s+', re.MULTILINE)
+
+def contains_whitespace(x):
+    return WS.search(x)
+
+def quot(x):
+    return ("%s" % x) if contains_whitespace(x) else x
+
 # http://stackoverflow.com/questions/595305/python-path-of-script
 def scriptpath():
     """
@@ -190,6 +199,10 @@ def make_tarfile(output_filename, source_dir):
     """Build a .tar.gz for an entire directory tree."""
     with tarfile.open(output_filename, "w:gz") as tar:
         tar.add(source_dir, arcname=os.path.basename(source_dir))
+    print 'cd %s; tar cvzf %s %s/' % (
+            quot(os.path.dirname(output_filename)),
+            quot(os.path.basename(output_filename)),
+            quot(os.path.basename(source_dir)))
 
 #==============================================================================
 # Cmdline
@@ -222,13 +235,12 @@ parser.add_argument('-v', '--version',
 # Main
 #==============================================================================
 
+def mkpath(childpath):
+    return os.path.normpath(os.path.join(projectpath(), childpath))
+
 def gen_binaries():
-    cwdir = os.getcwd()
-    try:
-        os.chdir(os.path.join(projectpath(), 'src/csharp/Wow'))
-        os.system('xbuild /p:Configuration=Release Wow.sln')
-    finally:
-        os.chdir(cwdir)
+    slnpath = mkpath('src/csharp/Wow/Wow.sln')
+    os.system('xbuild /p:Configuration=Release "%s"' % slnpath)
 
 def gen_build():
     # build the destination directory path.
