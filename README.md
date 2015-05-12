@@ -35,33 +35,41 @@ For now, download a release from the Releases page, extract it, navigate to wow/
 #### ubuntu / debian
 
 ```bash
+
+cat <<'EOF' > wow.sh
+
 # update your sources.
-sudo apt-get update
+sudo apt-get update;
 
 # install git and checkout the repo.
-sudo apt-get install git -y
+sudo apt-get install git -y;
 
 git clone https://github.com/strayptr/wow
-cd wow
+cd wow;
 
 # install realpath.
-sudo apt-get install realpath -y
+sudo apt-get install realpath -y;
 
 # install Mono.  Time to go grab a cup of coffee Kappa
-sudo apt-get install mono-complete -y
+sudo apt-get install mono-complete -y;
 
 # build the project.
-etc/make_build.py
+etc/make_build.py;
+
+EOF
 
 # run it.
-build/wow-such-signal/wow/bin/wow
+bash ./wow.sh; cd wow; build/wow-such-signal/wow/bin/wow
+```
 
-# alternatively, install it somewhere, add the bin folder to your
-# PATH, and then type wow to run it.
+Alternatively, copy wow somewhere useful and add the `wow/bin` folder to your `PATH`.  Then you can run wow just by typing `wow` in any terminal:
+
+```bash
 cp -r build/wow-such-signal /usr/local/
 export PATH="$PATH:/usr/local/wow-such-signal/wow/bin"
 wow
 ```
 
+(Eventually you'll be able to analyze hackrf signal files using e.g. `wow some-signal-recording.iq`, where `some-signal-recording.iq` is filled with quadrature samples.  It will be able to analyze most types of signal files, but supporting the default capture type of `hackrf_transfer` is the first milestone.)
 
 
