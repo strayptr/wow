@@ -10,9 +10,9 @@ MIT.  Use the code however you want.  In fact I expect you to build at least N c
 
 Currently it does nothing at all except display a blank form.  Super useful!  On the other hand, it's completely cross-platform. `wow` runs on Windows and anywhere that has `mono`, and the installation process is effortless:
 
-- go to the Releases page.
+- go to the Releases page: [github.com/strayptr/wow/releases](https://github.com/strayptr/wow/releases)
 
-- download the latest release's binary archive, like `wow-v0.0.1.tar.gz`, and extract it.
+- download the latest release's binary archive, like [wow-v0.0.1.tar.gz](https://github.com/strayptr/wow/releases/download/v0.0.1-alpha/wow-0.0.1.tar.gz) and extract it.
 
 - launch the visualizer by navigating to `wow-0.0.1/wow/bin` and double clicking on `wow` (or `wow.cmd` on Windows).
 
