@@ -4,7 +4,7 @@
 
 ### license
 
-MIT.  Use the code however you want.  In fact I expect you to build at least N companies with it and then hire me [![Kappa](https://git.io/Kappa)](//git.io/memes)
+MIT.  Use the code however you want.  In fact I expect you to build at least N companies with it.  Then hire me [![Kappa](https://git.io/Kappa)](//git.io/memes)
 
 ### okay
 
