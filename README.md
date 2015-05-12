@@ -1,10 +1,10 @@
 # wow
 
-`wow` (pronounced "![Doge](https://git.io/Doge)") is for analyzing radio signals captured by e.g. [a HackRF](https://github.com/mossmann/hackrf).
+`wow` (pronounced "[![Doge](https://git.io/Doge)](//git.io/memes)") is for analyzing radio signals captured by e.g. [a HackRF](https://github.com/mossmann/hackrf).
 
 ### license
 
-MIT.  Use the code however you want.  In fact I expect you to build at least N companies with it and then hire me ![Kappa](https://git.io/Kappa)
+MIT.  Use the code however you want.  In fact I expect you to build at least N companies with it and then hire me [![Kappa](https://git.io/Kappa)](//git.io/memes)
 
 ### okay
 
@@ -53,5 +53,6 @@ cp -r build/wow-such-signal /usr/local/
 export PATH="$PATH:/usr/local/wow-such-signal/wow/bin"
 wow
 ```
+
 
 
