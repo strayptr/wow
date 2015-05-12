@@ -36,7 +36,7 @@ For now, download a release from the Releases page, extract it, navigate to wow/
 
 ```bash
 
-cat <<'EOF' > wow.sh
+cat <<'EOF' > build_wow.sh
 
 # update your sources.
 sudo apt-get update;
@@ -58,8 +58,11 @@ etc/make_build.py;
 
 EOF
 
-# run it.
-bash ./wow.sh; cd wow; build/wow-such-signal/wow/bin/wow
+# build.
+bash ./build_wow.sh
+
+# run.
+cd wow; build/wow-such-signal/wow/bin/wow
 ```
 
 Alternatively, copy wow somewhere useful and add the `wow/bin` folder to your `PATH`.  Then you can run wow just by typing `wow` in any terminal:
