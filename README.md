@@ -2,8 +2,8 @@
 ### [git.io/wow](https://git.io/wow) - signal visualizer
 
 `wow` (pronounced "[![Doge](https://git.io/Doge)](//git.io/memes)") is
-a tool for viewing and analyzing radio signals captured by SDR such
-as the [HackRF](https://github.com/mossmann/hackrf) via
+a tool for viewing and analyzing radio signals captured by SDR such as
+the [HackRF](https://github.com/mossmann/hackrf) via
 `hackrf_transfer`.
 
 A secondary objective of the project is to serve as a learning tool.
@@ -64,9 +64,9 @@ has been added and it hasn't broken anything.
 
 ---
 
-### installation step 1 - install your dependencies
+### installation step 1 - preparing for your `wow`
 
--
+Install the dependencies for your platform:
 
 #### windows dependencies
 
@@ -138,42 +138,52 @@ bash ./wow_such_osx.sh;
 
 -
 
-### installation step 2 - grab a release archive
+### installation step 2 - choosing your `wow`
 
-Head over to [https://git.io/wow-many-release](//git.io/wow-many-release) and
-snag a release archive like
+Go to the Releases page
+([https://git.io/wow-many-release](//git.io/wow-many-release)) and
+download the latest archive, such as
 [wow-v0.0.1.tar.gz](https://github.com/strayptr/wow/releases/download/v0.0.1-alpha/wow-0.0.1.tar.gz).
-
-(Alternatively, you can always get releases from
-[https://git.io/wow-such-release](//git.io/wow-such-release),
-[https://git.io/wow-very-releases](//git.io/wow-very-releases), or
-[https://git.io/wow-releases](//git.io/wow-releases) depending on how you're
-feeling.)
 
 - Extract the archive, which produces a folder structure like
 `wow-0.0.1/wow/...`
 
+(Note: If https://git.io/wow-many-release doesn't suit your tastes, a
+number of alternatives have been prepared):
+- [https://git.io/wow-such-release](//git.io/wow-such-release)
+- [https://git.io/wow-very-releases](//git.io/wow-very-releases)
+- [https://git.io/wow-releases](//git.io/wow-releases)
+
 ### installation step 3 - exercising your `wow`
 
-- To launch the visualizer, navigate to `wow-0.0.1/wow/bin` and
-double click on `wow` (or `wow.cmd` on Windows).
+- To launch the visualizer, navigate to `wow-0.0.1/wow/bin` and double
+click on `wow` (or `wow.cmd` on Windows).
 
 (Or run `wow-0.0.1/wow/bin/wow` in a terminal window / a cmd.exe
 window.  Same thing.)
 
-### installation step 4 (optional) - choosing a home for your `wow`
+### installation step 4 (optional) - housing your `wow`
+
+The folder you got from the archive file is portable, i.e. `bin/wow`
+will probably run properly no matter where you put it or how you
+launch it.  So feel free to put it wherever you want; just add the
+subfolder `wow/bin` to your PATH.
+
+Eventually there will probably be some snazzy installer with snazzy
+installer features, but in the meantime here's some boilerplate
+recipes.
 
 To install `wow`:
 
-**Linux** users: Copy `wow-0.0.1/wow` to `/usr/local/wow` then add
-the bin folder to your PATH: `export PATH="$PATH:/usr/local/wow/bin"`.
+**Linux** users: Copy `wow-x.y.z/wow` to `/usr/local/wow` then add the
+bin folder to your PATH: `export PATH="$PATH:/usr/local/wow/bin"`.
 Now you can run `wow` from anywhere.  Thrilling.
 
 **Windows** users: Create a shortcut to `wow.cmd` on your desktop.
-Name it something like "help im trapped in a shortcut factory".  You
+Name it something like `help im trapped in a shortcut factory`.  You
 could also add `C:\wow-0.0.1\wow\bin` to your PATH if you want to
-launch wow from a cmd.exe terminal (assuming you extracted the archive
-to `C:\`).
+launch wow from a cmd.exe terminal (assuming you extracted the release
+archive to `C:\`).
 
 ### build from source
 
@@ -187,18 +197,23 @@ Paste this into your terminal:
 # get the code.
 git clone https://github.com/strayptr/wow && cd wow
 
-# build the project, then switch to the build's output dir.
+# build the project, then switch to the output folder it generated.
 etc/make_build.py && cd build/wow-such-signal
 
 ```
 
-You end up with a folder `build/wow-such-signal`.  It's analogous to
-the folder you'd get from extracting a release archive, like
-`wow-v0.0.1/`.  It's a self-contained directory structure which can be
-copied anywhere else and has no external dependencies, i.e. it's a
-portable installation.
+If there were no build errors, you'll end up inside a folder path like
+  `build/wow-such-signal`.  The `wow-such-signal` folder is analogous
+  to the folder you'd get from extracting a release archive, like
+  `wow-v0.0.1/`.  It's a self-contained directory structure which can
+  be copied anywhere else and has no external dependencies, i.e. it's
+  a portable installation.
 
-Now you can **goto installation step 3** above.
+Really, I'm making it sound more complicated than it is: just run
+`wow/bin/wow` in your terminal and the visualizer should launch.
+
+Now you can **goto installation step 3** above and pretend like it's
+the folder you got from a release archive.
 
 --
 
@@ -213,5 +228,15 @@ major/minor/revision versions.  This will produce a
 release](https://github.com/blog/1547-release-your-software) and
 attach the `wow-x.y.z.tar.gz` file.
 
+--
+
+This README is probably way too long and wordy, but, with apologies,
+at this point I think I should stop trying to write READMEs / build
+methodologies and start writing useful signal analysis code.
+
+--
+
+Pull requests welcome!  I'd be like
+[![PogChamp](https://git.io/PogChamp)](//git.io/memes)
 
 
