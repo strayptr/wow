@@ -159,7 +159,7 @@ number of alternatives have been prepared):
 - To launch the visualizer, navigate to `wow-0.0.1/wow/bin` and double
 click on `wow` (or `wow.cmd` on Windows).
 
-(Or run `wow-0.0.1/wow/bin/wow` in a terminal window / a cmd.exe
+(Or run `wow-0.0.1/wow/bin/wow` in a terminal window or a cmd.exe
 window.  Same thing.)
 
 ### installation step 4 (optional) - housing your `wow`
