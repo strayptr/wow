@@ -122,8 +122,10 @@ fi
 brew update
 
 # install `realpath`
-if [ -z "`which realpath`" ]; then brew tap strayptr/tap; brew install
-  realpath; fi
+if [ -z "`which realpath`" ]; then
+  brew tap strayptr/tap
+  brew install realpath
+fi
 
 # install `git`
 if [ -z "`which git`" ]; then brew install git; fi
