@@ -32,7 +32,7 @@ able to analyze most types of signal files including wav files, etc,
 but the first goal is to produce something minimally useful for the
 HackRF community. 
 
-`wow` is cross-platform: It's was designed from the ground up to run
+`wow` is cross-platform.  It was designed from the ground up to run
 pretty much anywhere that runs `mono` or Windows.  I'm very interested
 in getting it working on BSD, but I have no experience with BSD# yet.
 It'd be pretty sweet if anyone could help me figure out this part, but
