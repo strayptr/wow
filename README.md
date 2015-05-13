@@ -1,19 +1,23 @@
 
-### [git.io/wow](https://git.io/wow) - signal analyzer
+### [git.io/wow](https://git.io/wow) - signal visualizer
 
 `wow` (pronounced "[![Doge](https://git.io/Doge)](//git.io/memes)") is
-a tool for analyzing radio signals captured by e.g.
-[HackRF](https://github.com/mossmann/hackrf) using `hackrf_transfer`.
+a tool for viewing and analyzing radio signals captured by SDR, such
+as the [HackRF](https://github.com/mossmann/hackrf) via
+`hackrf_transfer`.
+
+
+A secondary objective of the project is to serve as a learning tool.
+If you're into SDR, or you're curious about how to write a
+cross-platform GUI app, hopefully something in here might be useful
+to you.  
+
 
 ### license
 
 MIT.  Use the code however you want.  Take it and build at least n - 1
 companies with it.
 [![BloodTrail](https://git.io/BloodTrail)](//git.io/memes)
-
-I want the project to serve as a learning tool.  If you're into SDR,
-or you're curious about writing a cross-platform GUI app, it's my hope
-that maybe something in here might be useful to you.  
 
 ### okay
 
