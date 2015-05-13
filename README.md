@@ -48,9 +48,9 @@ let me know.  (See 'installation' section below.)  Also let me know if
 it's not completely painless to build it from source.  (See 'build'
 section below.)
 
-I've often noticed that some software projects are sometimes extremely
+I've often noticed that some software projects can be extremely
 tricky to build from source, depending on your platform, so I'm trying
-to make "it's a pleasure to build it from source!" a first-class
+to make "it's a pleasure to build this from source!" a first-class
 feature from the very beginning of this project.  Maybe it'll
 encourage people to tinker with the code or submit a pull request.
 
