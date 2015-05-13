@@ -1,5 +1,5 @@
 
-### [git.io/wow](https://git.io/wow) - signal visualizer
+### [https://git.io/wow](https://git.io/wow) - signal visualizer
 
 `wow` (pronounced "[![Doge](https://git.io/Doge)](//git.io/memes)") is
 a tool for viewing and analyzing radio signals captured by SDR, such
@@ -140,14 +140,14 @@ bash ./wow_such_osx.sh;
 
 ### installation step 2 - grab a release archive.
 
-Head over to [git.io/wow-many-release](//git.io/wow-many-release) and
+Head over to [https://git.io/wow-many-release](//git.io/wow-many-release) and
 snag a release archive like
 [wow-v0.0.1.tar.gz](https://github.com/strayptr/wow/releases/download/v0.0.1-alpha/wow-0.0.1.tar.gz).
 
 (Alternatively, you can always get releases from
-[//git.io/wow-such-release](wow-such-release),
-[//git.io/wow-very-releases](wow-very-releases), or
-[//git.io/wow-releases](wow-releases) depending on how you're
+[https://git.io/wow-such-release](//git.io/wow-such-release),
+[https://git.io/wow-very-releases](//git.io/wow-very-releases), or
+[https://git.io/wow-releases](//git.io/wow-releases) depending on how you're
 feeling.)
 
 - Extract the archive, which produces a folder structure like
