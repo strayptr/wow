@@ -2,7 +2,7 @@
 ### [git.io/wow](https://git.io/wow) - signal visualizer
 
 `wow` (pronounced "[![Doge](https://git.io/Doge)](//git.io/memes)") is
-a tool for viewing and analyzing radio signals captured by SDR such as
+a tool for viewing and analyzing radio signals captured by SDR platforms such as
 the [HackRF](https://github.com/mossmann/hackrf) via
 `hackrf_transfer`.
 
