@@ -138,7 +138,7 @@ bash ./wow_such_osx.sh;
 
 -
 
-### installation step 2 - grab a release.
+### installation step 2 - grab a release archive.
 
 Head over to [git.io/wow-many-release](//git.io/wow-many-release) and
 snag a release archive like
@@ -150,22 +150,26 @@ snag a release archive like
 [//git.io/wow-releases](wow-releases) depending on how you're
 feeling.)
 
-3. Extract the archive, which produces a folder structure like
+- Extract the archive, which produces a folder structure like
 `wow-0.0.1/wow/...`
 
-4. To launch the visualizer, navigate to `wow-0.0.1/wow/bin` and
+### installation step 3 - exercising your `wow`.
+
+- To launch the visualizer, navigate to `wow-0.0.1/wow/bin` and
 double click on `wow` (or `wow.cmd` on Windows).
 
 (Or run `wow-0.0.1/wow/bin/wow` in a terminal window / a cmd.exe
 window.  Same thing.)
 
-5. (Optional installation step.) To install `wow`:
+### installation step 4 (optional) - choosing a home for your `wow`.
 
-- **Linux** users: Copy `wow-0.0.1/wow` to `/usr/local/wow` then add
+To install `wow`:
+
+**Linux** users: Copy `wow-0.0.1/wow` to `/usr/local/wow` then add
 the bin folder to your PATH: `export PATH="$PATH:/usr/local/wow/bin"`.
 Now you can run `wow` from anywhere.  Thrilling.
 
-- **Windows** users: Create a shortcut to `wow.cmd` on your desktop.
+**Windows** users: Create a shortcut to `wow.cmd` on your desktop.
 Name it something like "help im trapped in a shortcut factory".  You
 could also add `C:\wow-0.0.1\wow\bin` to your PATH if you want to
 launch wow from a cmd.exe terminal (assuming you extracted the archive
@@ -173,74 +177,30 @@ to `C:\`).
 
 ### build from source
 
-**Install the dependencies** via the "install" section above.  It
+**Install the dependencies** via **installation step 1** above.  It
 includes everything you need to build from source.
-
-#### os x
-
-```bash
-
-cat <<'EOF' > wow_such_osx.sh
-
-#
-# Install Homebrew. http://brew.sh
-#
-if [ -z "`which brew`" ]; then ruby -e "$(curl -fsSL
-  https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-
-#
-# Update Homebrew.
-#
-brew update
-
-#
-# Install `realpath`
-#
-if [ -z "`which realpath`" ]; then brew tap strayptr/tap brew install
-  realpath fi
-
-#
-# Install `git`
-#
-if [ -z "`which git`" ]; then brew install git fi
-
-#
-# Install `mono`.
-#
-# NOTE:  If you get build errors later on, then uninstall your
-# existing Mono by e.g. https://discussions.apple.com/thread/3848498
-#
-if [ -z "`which mono`" ]; then brew install mono fi
-
-EOF
-
-# install the dependencies.
-bash ./wow_such_osx.sh; ```
-
-- NOTE:  If you're getting strange build errors, consider
-[uninstalling your existing
-Mono](https://discussions.apple.com/thread/3848498) and then
-installing it via Homebrew.
-
-#### ubuntu / debian
 
 Paste this into your terminal:
 
-```
+```bash
+
 # get the code.
 git clone https://github.com/strayptr/wow && cd wow
 
-# build the project and switch to the build output dir.
-etc/make_build.py && cd build/wow-such-signal ```
+# build the project, then switch to the build's output dir.
+etc/make_build.py && cd build/wow-such-signal
 
-Then proceed from step 4 of the install directions above. 
+```
 
 You end up with a folder `build/wow-such-signal`.  It's analogous to
 the folder you'd get from extracting a release archive, like
 `wow-v0.0.1/`.  It's a self-contained directory structure which can be
 copied anywhere else and has no external dependencies, i.e. it's a
 portable installation.
+
+Now you can **goto installation step 3** above.
+
+--
 
 The process of making an actual release is exactly the same, except
 you pass in a version number:
