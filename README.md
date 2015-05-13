@@ -1,5 +1,5 @@
 
-# [git.io/wow](https://git.io/wow) - signal analyzer
+### [git.io/wow](https://git.io/wow) - signal analyzer
 
 `wow` (pronounced "[![Doge](https://git.io/Doge)](//git.io/memes)") is
 a tool for analyzing radio signals captured by e.g.
@@ -36,36 +36,40 @@ so far, but hopefully the UI will be like
 [![PogChamp](https://git.io/PogChamp)](//git.io/memes) pretty soon.)
 
 I'd be grateful if you'd try it out, even though it does nothing
-useful yet.  If there are any rough spots in the install process if
-the build process is like
-[![BibleThump](https://git.io/BibleThump)](//git.io/memes) then let me
-know.  I've noticed that many projects are exceedingly difficult to
-build from source depending on your platform, so I'm trying to make
+useful yet.  If there are any rough spots that feel like
+[![BibleThump](https://git.io/BibleThump)](//git.io/memes) then please
+let me know
+
+I've noticed that software projects are sometimes extremely difficult
+to build from source depending on your platform, so I'm trying to make
 "it's a pleasure to build it from source!" a first-class feature from
-the very beginning.  Maybe it might encourage people to mess with the
-code or maybe submit a pull request.
+the very beginning of this project.  Hopefully it'll encourage people
+to tinker with the code or submit a pull request.
 
 The current plan is to get a basic spectrogram visualizater up and
 running as quickly as possible, choosing to release one tiny feature
 at a time.  I intend to follow [GitHub
 Flow](https://guides.github.com/introduction/flow/); in particular,
-the `master` branch should always contain working code, and releases
-should be frequent.
+the `master` branch should always contain working code, and feature
+additions should be small and frequent.  Release whenever a feature
+has been added and hasn't broken anything.
 
-### install
+---
 
-(I plan to make these instructions way easier.  Right now they're kind
-of [![FailFish](https://git.io/FailFish)](//git.io/memes).  Sorry
-about that.)
+### installation
 
 1. install dependencies for your platform:
 
-#### windows 
+-
+
+#### windows dependencies
 
 Pop open a beer, 'cause there ain't no thang for you to do but to head
 down to step 2.
 
-#### ubuntu / debian
+
+
+#### ubuntu / debian dependencies
 
 Paste this into your terminal:
 
@@ -90,7 +94,9 @@ EOF
 # install the dependencies.
 bash ./wow_such_debian.sh; ```
 
-#### os x
+
+
+#### os x dependencies
 
 Paste this into a Terminal window:
 
@@ -122,6 +128,8 @@ EOF
 bash ./wow_such_osx.sh;
 
 ```
+
+-
 
 2. Grab a release archive from
 [git.io/wow-many-release](//git.io/wow-many-release), such as
