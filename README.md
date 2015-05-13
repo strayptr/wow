@@ -9,8 +9,8 @@ as the [HackRF](https://github.com/mossmann/hackrf) via
 
 A secondary objective of the project is to serve as a learning tool.
 If you're into SDR, or you're curious about how to write a
-cross-platform GUI app, hopefully something in here might be useful
-to you.  
+  cross-platform GUI app, hopefully something in here might be useful
+  to you.  
 
 
 ### license
@@ -32,17 +32,14 @@ but the first goal is to make something minimally useful for the
 HackRF community. 
 
 `wow` is cross-platform: It's was designed from the ground up to run
-pretty much anywhere that runs `mono` or Windows.  The effort thus far
-has been setting up this stable base on which to build features.
-(It's been pretty
-[![ResidentSleeper](https://git.io/ResidentSleeper)](//git.io/memes)
-so far, but hopefully the UI will be like
-[![PogChamp](https://git.io/PogChamp)](//git.io/memes) pretty soon.)
+pretty much anywhere that runs `mono` or Windows.  
 
-I'd be grateful if you'd try it out, even though it does nothing
-useful yet.  If there are any rough spots that feel like
-[![BibleThump](https://git.io/BibleThump)](//git.io/memes) then please
-let me know
+**I'd be grateful if you'd try it out** to verify it runs on your
+platform, even though it doesn't do anything useful yet.  If there are
+any pain points during the install process, please let me know.  (See
+'installation' section below.)  Also let me know if it's not
+completely painless to build it from source.  (See 'build' section
+below.)
 
 I've noticed that software projects are sometimes extremely difficult
 to build from source depending on your platform, so I'm trying to make
@@ -56,7 +53,7 @@ at a time.  I intend to follow [GitHub
 Flow](https://guides.github.com/introduction/flow/); in particular,
 the `master` branch should always contain working code, and feature
 additions should be small and frequent.  Release whenever a feature
-has been added and hasn't broken anything.
+has been added and it hasn't broken anything.
 
 ---
 
@@ -69,8 +66,7 @@ has been added and hasn't broken anything.
 #### windows dependencies
 
 Pop open a beer, 'cause there ain't no thang for you to do but to head
-down to step 2.
-
+down to installation step 2.  Scroll down like it's 1968!
 
 
 #### ubuntu / debian dependencies
