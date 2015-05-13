@@ -22,7 +22,8 @@ companies with it.
 
 Currently the software is in pre-alpha.  In fact, it does nothing
 whatsoever except display a blank form.  (Though if you happen to live
-in a faraday cage, this might not be entirely inaccurate.)
+in a faraday cage, this visualization might not be entirely
+inaccurate.)
 
 You'll be able to analyze signal files by running `wow
 some-signal-recording.iq`, where `some-signal-recording.iq` is filled
