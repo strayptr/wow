@@ -6,7 +6,6 @@ a tool for viewing and analyzing radio signals captured by SDR, such
 as the [HackRF](https://github.com/mossmann/hackrf) via
 `hackrf_transfer`.
 
-
 A secondary objective of the project is to serve as a learning tool.
 If you're into SDR, or you're curious about how to write a
   cross-platform GUI app, hopefully something in here might be useful
@@ -22,7 +21,8 @@ companies with it.
 ### okay
 
 Currently the software is in pre-alpha.  In fact, it does nothing
-whatsoever except display a blank form.  (Though if you happen to live in a faraday cage, this might be an accurate visualization.)
+whatsoever except display a blank form.  (Though if you happen to live
+in a faraday cage, this might not be entirely inaccurate.)
 
 You'll be able to analyze signal files by running `wow
 some-signal-recording.iq`, where `some-signal-recording.iq` is filled
@@ -32,19 +32,26 @@ but the first goal is to produce something minimally useful for the
 HackRF community. 
 
 `wow` is cross-platform: It's was designed from the ground up to run
-pretty much anywhere that runs `mono` or Windows.  I'm very interested in getting it working on BSD, but I have no experience with BSD# yet.  It'd be pretty sweet if anyone could help me figure out this part, but unfortunately I have nothing to reward you with except some dry humor, an honorary mention in an exclusive "Credits" section (so exclusive it doesn't even exist yet), and my eternal gratitude (which sadly isn't edible.)
+pretty much anywhere that runs `mono` or Windows.  I'm very interested
+in getting it working on BSD, but I have no experience with BSD# yet.
+It'd be pretty sweet if anyone could help me figure out this part, but
+unfortunately I have nothing to reward you with except some dry humor,
+an honorary mention in an exclusive "Credits" section (so exclusive it
+doesn't even exist yet), and my eternal gratitude (which sadly isn't
+edible.)
 
-**I'd be very grateful** if you'd try out `wow` and verify it runs on your
-platform, in spite of the fact that it doesn't do anything useful yet.  If there are
-any pain points during the install process, please let me know.  (See
-'installation' section below.)  Also let me know if it's not
-completely painless to build it from source.  (See 'build' section
-below.)
+**I'd be very grateful** if you'd try out `wow` and verify it runs on
+your platform, in spite of the fact that it doesn't do anything useful
+yet.  If there are any pain points during the install process, please
+let me know.  (See 'installation' section below.)  Also let me know if
+it's not completely painless to build it from source.  (See 'build'
+section below.)
 
-I've often noticed that some software projects are sometimes extremely tricky to build from source, depending on your platform, so I'm trying to make
-"it's a pleasure to build it from source!" a first-class feature from
-the very beginning of this project.  Maybe it'll encourage people
-to tinker with the code or submit a pull request.
+I've often noticed that some software projects are sometimes extremely
+tricky to build from source, depending on your platform, so I'm trying
+to make "it's a pleasure to build it from source!" a first-class
+feature from the very beginning of this project.  Maybe it'll
+encourage people to tinker with the code or submit a pull request.
 
 The current plan is to get a basic spectrogram visualizater up and
 running as quickly as possible, choosing to release one tiny feature
@@ -91,7 +98,9 @@ sudo apt-get install mono-complete -y
 EOF
 
 # install the dependencies.
-bash ./wow_such_debian.sh; ```
+bash ./wow_such_debian.sh;
+
+```
 
 
 
