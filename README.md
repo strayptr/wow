@@ -25,7 +25,7 @@ whatsoever except display a blank form.  (Though if you happen to live
 in a faraday cage, this visualization might not be entirely
 inaccurate.)
 
-You'll be able to analyze signal files by running `wow
+Eventually you'll be able to analyze signal files by running `wow
 some-signal-recording.iq`, where `some-signal-recording.iq` is filled
 with quadrature samples from `hackrf_transfer`. Someday it might be
 able to analyze most types of signal files including wav files, etc,
