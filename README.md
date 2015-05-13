@@ -64,7 +64,7 @@ has been added and it hasn't broken anything.
 
 ---
 
-### installation step 1 - install your dependencies.
+### installation step 1 - install your dependencies
 
 -
 
@@ -138,7 +138,7 @@ bash ./wow_such_osx.sh;
 
 -
 
-### installation step 2 - grab a release archive.
+### installation step 2 - grab a release archive
 
 Head over to [https://git.io/wow-many-release](//git.io/wow-many-release) and
 snag a release archive like
@@ -153,7 +153,7 @@ feeling.)
 - Extract the archive, which produces a folder structure like
 `wow-0.0.1/wow/...`
 
-### installation step 3 - exercising your `wow`.
+### installation step 3 - exercising your `wow`
 
 - To launch the visualizer, navigate to `wow-0.0.1/wow/bin` and
 double click on `wow` (or `wow.cmd` on Windows).
@@ -161,7 +161,7 @@ double click on `wow` (or `wow.cmd` on Windows).
 (Or run `wow-0.0.1/wow/bin/wow` in a terminal window / a cmd.exe
 window.  Same thing.)
 
-### installation step 4 (optional) - choosing a home for your `wow`.
+### installation step 4 (optional) - choosing a home for your `wow`
 
 To install `wow`:
 
