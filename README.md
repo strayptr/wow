@@ -48,9 +48,9 @@ let me know.  (See 'installation' section below.)  Also let me know if
 it's not completely painless to build it from source.  (See 'build'
 section below.)
 
-I've often noticed that some software projects can be extremely
-tricky to build from source, depending on your platform, so I'm trying
-to make "it's a pleasure to build this from source!" a first-class
+I've often noticed that some software projects can be extremely tricky
+to build from source, depending on your platform, so I'm trying to
+make "it's a pleasure to build this from source!" a first-class
 feature from the very beginning of this project.  Maybe it'll
 encourage people to tinker with the code or submit a pull request.
 
@@ -64,9 +64,7 @@ has been added and it hasn't broken anything.
 
 ---
 
-### installation
-
-1. install dependencies for your platform:
+### installation step 1 - install your dependencies.
 
 -
 
@@ -122,10 +120,8 @@ fi
 brew update
 
 # install `realpath`
-if [ -z "`which realpath`" ]; then
-  brew tap strayptr/tap
-  brew install realpath
-fi
+if [ -z "`which realpath`" ]; then brew tap strayptr/tap brew install
+  realpath fi
 
 # install `git`
 if [ -z "`which git`" ]; then brew install git; fi
@@ -142,22 +138,26 @@ bash ./wow_such_osx.sh;
 
 -
 
-2. Grab a release archive from
-[git.io/wow-many-release](//git.io/wow-many-release), such as
+### installation step 2 - grab a release.
+
+Head over to [git.io/wow-many-release](//git.io/wow-many-release) and
+snag a release archive like
 [wow-v0.0.1.tar.gz](https://github.com/strayptr/wow/releases/download/v0.0.1-alpha/wow-0.0.1.tar.gz).
 
-(Alternatively, you can also get releases from
+(Alternatively, you can always get releases from
 [//git.io/wow-such-release](wow-such-release),
 [//git.io/wow-very-releases](wow-very-releases), or
-[//git.io/wow-release](wow-release) depending on how you're feeling.)
+[//git.io/wow-releases](wow-releases) depending on how you're
+feeling.)
 
-3. Extract the archive.
+3. Extract the archive, which produces a folder structure like
+`wow-0.0.1/wow/...`
 
 4. To launch the visualizer, navigate to `wow-0.0.1/wow/bin` and
 double click on `wow` (or `wow.cmd` on Windows).
 
-- (or run `wow-0.0.1/wow/bin/wow` from a terminal window or from
-cmd.exe.  Same thing.)
+(Or run `wow-0.0.1/wow/bin/wow` in a terminal window / a cmd.exe
+window.  Same thing.)
 
 5. (Optional installation step.) To install `wow`:
 
