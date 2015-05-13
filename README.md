@@ -1,113 +1,242 @@
-# wow
 
-`wow` (pronounced "[![Doge](https://git.io/Doge)](//git.io/memes)") is for analyzing radio signals captured by e.g. [a HackRF](https://github.com/mossmann/hackrf).
+### [git.io/wow](https://git.io/wow) - signal visualizer
+
+`wow` (pronounced "[![Doge](https://git.io/Doge)](//git.io/memes)") is
+a tool for viewing and analyzing radio signals captured by SDR such as
+the [HackRF](https://github.com/mossmann/hackrf) via
+`hackrf_transfer`.
+
+A secondary objective of the project is to serve as a learning tool.
+If you're into SDR, or you're curious about how to write a
+  cross-platform GUI app, hopefully something in here might be useful
+  to you.  
+
 
 ### license
 
-MIT.  Use the code however you want.  In fact I expect you to build at least N companies with it.  Then hire me [![Kappa](https://git.io/Kappa)](//git.io/memes)
+MIT.  Use the code however you want.  Take it and build at least n - 1
+companies with it.
+[![BloodTrail](https://git.io/BloodTrail)](//git.io/memes)
 
 ### okay
 
-Currently it does nothing at all except display a blank form.  Super useful!  On the other hand, it's completely cross-platform. `wow` runs on Windows and anywhere that has `mono`, and the installation process is effortless:
+Currently the software is in pre-alpha.  In fact, it does nothing
+whatsoever except display a blank form.  (Though if you happen to live
+in a faraday cage, this visualization might not be entirely
+inaccurate.)
 
-- go to the Releases page: [github.com/strayptr/wow/releases](https://github.com/strayptr/wow/releases)
+You'll be able to analyze signal files by running `wow
+some-signal-recording.iq`, where `some-signal-recording.iq` is filled
+with quadrature samples from `hackrf_transfer`. Someday it might be
+able to analyze most types of signal files including wav files, etc,
+but the first goal is to produce something minimally useful for the
+HackRF community. 
 
-- download the latest release's binary archive, like [wow-v0.0.1.tar.gz](https://github.com/strayptr/wow/releases/download/v0.0.1-alpha/wow-0.0.1.tar.gz) and extract it.
+`wow` is cross-platform: It's was designed from the ground up to run
+pretty much anywhere that runs `mono` or Windows.  I'm very interested
+in getting it working on BSD, but I have no experience with BSD# yet.
+It'd be pretty sweet if anyone could help me figure out this part, but
+unfortunately I have nothing to reward you with except some dry humor,
+an honorary mention in an exclusive "Credits" section (so exclusive it
+doesn't even exist yet), and my eternal gratitude (which sadly isn't
+edible.)
 
-- launch the visualizer by navigating to `wow-0.0.1/wow/bin` and double clicking on `wow` (or `wow.cmd` on Windows).
+**I'd be very grateful** if you'd try out `wow` and verify it runs on
+your platform, in spite of the fact that it doesn't do anything useful
+yet.  If there are any pain points during the install process, please
+let me know.  (See 'installation' section below.)  Also let me know if
+it's not completely painless to build it from source.  (See 'build'
+section below.)
 
-- (or run `wow-0.0.01/win/bin/wow` from a terminal or cmd.exe.  Same thing.)
+I've often noticed that some software projects can be extremely tricky
+to build from source, depending on your platform, so I'm trying to
+make "it's a pleasure to build this from source!" a first-class
+feature from the very beginning of this project.  Maybe it'll
+encourage people to tinker with the code or submit a pull request.
 
-- (Linux): optionally copy `wow-0.0.1/wow` somewhere like `/usr/local` and then add `/usr/local/wow/bin` to your PATH: `export PATH="$PATH:/usr/local/wow/bin"`.  Now you can type `wow` in your terminal.  Thrilling.
+The current plan is to get a basic spectrogram visualizater up and
+running as quickly as possible, choosing to release one tiny feature
+at a time in rapid succession.  I intend to follow [GitHub
+Flow](https://guides.github.com/introduction/flow/); in particular,
+the `master` branch should always contain working code, and feature
+additions should be small and frequent.  Release whenever a feature
+has been added and it hasn't broken anything.
 
-- (Windows): optionally create a shortcut to `wow.cmd`
+---
 
-### build
+### installation step 1 - preparing for your `wow`
 
-Building from source was designed to be completely effortless.  It's my hope that by making "developer experience" a first-class feature then people will feel encouraged to mess with the code and maybe submit a pull request.
+Install the dependencies for your platform:
 
-#### os x
+#### windows dependencies
 
-`wow` runs fine on OS X.  I just haven't gotten around to writing/testing the build instructions yet.
+Pop open a beer, 'cause there ain't no thang for you to do but to head
+down to installation step 2.  Scroll down like it's 1968!
 
-For now, download a release from the Releases page, extract it, navigate to wow/bin and double click on 'wow' to launch it.  (Or run e.g. `path_to_wow/wow/bin/wow` from a terminal.)
 
-#### ubuntu / debian
+#### ubuntu / debian dependencies
 
-Copy-paste this into your terminal to get the code and build it.  (This is only one step removed from "wget and run this shell script", which is terrible practice since you have no idea what the code is doing.  But this way at least it's semi-transparent...)
+Paste this into your terminal:
 
 ```bash
 
-cat <<'EOF' > build_wow.sh
+cat <<'EOF' > wow_such_debian.sh
 
 # update your sources.
-sudo apt-get update;
+sudo apt-get update
 
 # install git and checkout the repo.
-sudo apt-get install git -y;
-
-git clone https://github.com/strayptr/wow
-cd wow;
+sudo apt-get install git -y
 
 # install realpath.
-sudo apt-get install realpath -y;
+sudo apt-get install realpath -y
 
 # install Mono.  Time to go grab a cup of coffee Kappa
-sudo apt-get install mono-complete -y;
-
-# build the project.
-etc/make_build.py;
+sudo apt-get install mono-complete -y
 
 EOF
 
-# build.
-bash ./build_wow.sh
+# install the dependencies.
+bash ./wow_such_debian.sh;
+
 ```
 
-Run it like so:
+
+
+#### os x dependencies
+
+Paste this into a Terminal window:
 
 ```bash
-cd wow; build/wow-such-signal/wow/bin/wow
-```
 
-To install wow someplace useful and add it to your `PATH`, paste this:
+cat <<'EOF' > wow_such_osx.sh
 
-```bash
-cat <<'EOS' > install-wow.sh
-
-# install wow someplace...
-someplace="/usr/local/wow"
-
-if [ -d "$someplace" ]; then
-  >&2 "$someplace exists, aborting."
-  exit 1
+# install Homebrew. http://brew.sh
+if [ -z "`which brew`" ]; then ruby -e "$(curl -fsSL
+  https://raw.githubusercontent.com/Homebrew/install/master/install)";
 fi
 
-# copy it over.
-sudo cp -r build/wow-such-signal/wow "$someplace"
+# update Homebrew.
+brew update
 
-# add wow to our PATH by appending this to our bashrc.
-cat <<EOF >>~/.bashrc
-#
-# wow signal analyzer.  https://git.io/wow
-#
-export PATH="\$PATH:$someplace/bin"
+# install `realpath`
+if [ -z "`which realpath`" ]; then brew tap strayptr/tap brew install
+  realpath fi
+
+# install `git`
+if [ -z "`which git`" ]; then brew install git; fi
+
+# install `mono`.
+if [ -z "`which mono`" ]; then brew install mono; fi
+
 EOF
 
-EOS
+# install the dependencies.
+bash ./wow_such_osx.sh;
 
-# install and reload our bashrc.
-cd wow
-bash ./install-wow.sh; source ~/.bashrc
 ```
 
-Now you can run wow from anywhere:
+-
+
+### installation step 2 - choosing your `wow`
+
+Go to the Releases page
+([https://git.io/wow-many-release](//git.io/wow-many-release)) and
+download the latest archive, such as
+[wow-v0.0.1.tar.gz](https://github.com/strayptr/wow/releases/download/v0.0.1-alpha/wow-0.0.1.tar.gz).
+
+- Extract the archive, which produces a folder structure like
+`wow-0.0.1/wow/...`
+
+(Note: If https://git.io/wow-many-release doesn't suit your tastes, a
+number of alternatives have been prepared):
+- [https://git.io/wow-such-release](//git.io/wow-such-release)
+- [https://git.io/wow-very-releases](//git.io/wow-very-releases)
+- [https://git.io/wow-releases](//git.io/wow-releases)
+
+### installation step 3 - exercising your `wow`
+
+- To launch the visualizer, navigate to `wow-0.0.1/wow/bin` and double
+click on `wow` (or `wow.cmd` on Windows).
+
+(Or run `wow-0.0.1/wow/bin/wow` in a terminal window or a cmd.exe
+window.  Same thing.)
+
+### installation step 4 (optional) - housing your `wow`
+
+The folder you got from the archive file is portable, i.e. `bin/wow`
+will probably run properly no matter where you put it or how you
+launch it.  So feel free to put it wherever you want; just add the
+subfolder `wow/bin` to your PATH.
+
+Eventually there will probably be some snazzy installer with snazzy
+installer features, but in the meantime here's some boilerplate
+recipes.
+
+To install `wow`:
+
+**Linux** users: Copy `wow-x.y.z/wow` to `/usr/local/wow` then add the
+bin folder to your PATH: `export PATH="$PATH:/usr/local/wow/bin"`.
+Now you can run `wow` from anywhere.  Thrilling.
+
+**Windows** users: Create a shortcut to `wow.cmd` on your desktop.
+Name it something like `help im trapped in a shortcut factory`.  You
+could also add `C:\wow-0.0.1\wow\bin` to your PATH if you want to
+launch wow from a cmd.exe terminal (assuming you extracted the release
+archive to `C:\`).
+
+### build from source
+
+**Install the dependencies** via **installation step 1** above.  It
+includes everything you need to build from source.
+
+Paste this into your terminal:
 
 ```bash
-cd ~/
-wow
-````
 
-Eventually you'll be able to analyze hackrf signal files using e.g. `wow some-signal-recording.iq`, where `some-signal-recording.iq` is filled with quadrature samples.  It will be able to analyze most types of signal files, but supporting the default capture type of `hackrf_transfer` is the first milestone.
+# get the code.
+git clone https://github.com/strayptr/wow && cd wow
+
+# build the project, then switch to the output folder it generated.
+etc/make_build.py && cd build/wow-such-signal
+
+```
+
+If there were no build errors, you'll end up inside a folder path like
+  `build/wow-such-signal`.  The `wow-such-signal` folder is analogous
+  to the folder you'd get from extracting a release archive, like
+  `wow-v0.0.1/`.  It's a self-contained directory structure which can
+  be copied anywhere else and has no external dependencies, i.e. it's
+  a portable installation.
+
+Really, I'm making it sound more complicated than it is: just run
+`wow/bin/wow` in your terminal and the visualizer should launch.
+
+Now you can **goto installation step 3** above and pretend like it's
+the folder you got from a release archive.
+
+--
+
+The process of making an actual release is exactly the same, except
+you pass in a version number:
+
+- run `etc/make_build.py --version x.y.z` where x/y/z are
+major/minor/revision versions.  This will produce a
+`build/wow-x.y.z.tar.gz` file.
+  
+- create a [GitHub
+release](https://github.com/blog/1547-release-your-software) and
+attach the `wow-x.y.z.tar.gz` file.
+
+--
+
+This README is probably way too long and wordy, but, with apologies,
+at this point I think I should stop trying to write READMEs / build
+methodologies and start writing useful signal analysis code.
+
+--
+
+Pull requests welcome!  I'd be like
+[![PogChamp](https://git.io/PogChamp)](//git.io/memes)
 
 
