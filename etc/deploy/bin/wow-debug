@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# include common functionality.
+source "`dirname "$BASH_SOURCE"`/etc/common.sh"
+
+MONO_LOG_LEVEL=debug "$ScriptPath/wow" "$@"
+

@@ -111,6 +111,9 @@ Paste this into a Terminal window:
 
 cat <<'EOF' > wow_such_osx.sh
 
+# sudo privs will be required later for brew cask.
+sudo echo 
+
 # install Homebrew. http://brew.sh
 if [ -z "`which brew`" ]; then ruby -e "$(curl -fsSL
   https://raw.githubusercontent.com/Homebrew/install/master/install)";
@@ -120,14 +123,26 @@ fi
 brew update
 
 # install `realpath`
-if [ -z "`which realpath`" ]; then brew tap strayptr/tap brew install
-  realpath fi
+if [ -z "`which realpath`" ]; then
+  brew tap strayptr/tap
+  brew install realpath
+fi
 
 # install `git`
 if [ -z "`which git`" ]; then brew install git; fi
 
 # install `mono`.
-if [ -z "`which mono`" ]; then brew install mono; fi
+if [ -z "`which mono`" ]; then
+  # we also need libgdiplus, which doesn't come with `brew install
+  # mono`.  See https://github.com/Homebrew/homebrew/pull/34973
+  # Let's install mono from `brew cask` instead.
+
+  # install cask, the brew binary package manager.
+  brew install caskroom/cask/brew-cask
+
+  # install the full mono-mdk from cask.
+  brew cask install mono-mdk
+fi
 
 EOF
 
