@@ -74,6 +74,9 @@
     <EmbeddedResource Include="ChooseOrEnterValue.resx">
       <DependentUpon>ChooseOrEnterValue.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Visualization\Spectrogram.resx">
+      <DependentUpon>Spectrogram.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
