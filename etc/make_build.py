@@ -208,8 +208,8 @@ def sln_deploy(dst, slnpath):
         copyfile(binfile, os.path.join(path, filename))
 
 def etc_deploy(dst, etcpath):
-    # recursively copy the contents of the 'etc/bin' folder '$prefix/$vername/$ProgramName/bin'
-    cp_r(os.path.join(etcpath, 'bin'), os.path.join(dst, 'bin'))
+    # recursively copy 'etc/deploy/*' to '$prefix/$vername/$ProgramName/'
+    cp_r(os.path.join(etcpath, 'deploy'), dst)
 
 #==============================================================================
 # Cmdline
