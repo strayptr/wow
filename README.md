@@ -18,11 +18,6 @@ MIT.  Use the code however you want.  Take it and build at least n - 1
 companies with it.
 [![BloodTrail](https://git.io/BloodTrail)](//git.io/memes)
 
-
-### design
-
-![Mindmap](http://i.imgur.com/ZBz2lyn.jpg)
-
 ### okay
 
 Currently the software is in pre-alpha.  In fact, it does nothing
@@ -259,4 +254,13 @@ methodologies and start writing useful signal analysis code.
 Pull requests welcome!  I'd be like
 [![PogChamp](https://git.io/PogChamp)](//git.io/memes)
 
+
+### mindmap
+
+We use [XMind](https://www.xmind.net/) to keep track of notes,
+ideas, design decisions, cornercase troubleshooting issues, etc.
+
+Current mindmap:
+
+![Mindmap](http://i.imgur.com/ZBz2lyn.jpg)
 
