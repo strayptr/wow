@@ -115,8 +115,8 @@ cat <<'EOF' > wow_such_osx.sh
 sudo echo 
 
 # install Homebrew. http://brew.sh
-if [ -z "`which brew`" ]; then ruby -e "$(curl -fsSL
-  https://raw.githubusercontent.com/Homebrew/install/master/install)";
+if [ -z "`which brew`" ]; then
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
 fi
 
 # update Homebrew.
