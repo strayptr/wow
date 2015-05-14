@@ -1,0 +1,3 @@
+# fetch nuget.exe.
+wget https://nuget.org/nuget.exe
+
