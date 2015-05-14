@@ -9,7 +9,7 @@ the [HackRF](https://github.com/mossmann/hackrf) via
 A secondary objective of the project is to serve as a learning tool.
 If you're into SDR, or you're curious about how to write a
   cross-platform GUI app, hopefully something in here might be useful
-  to you.  
+  to you. 
 
 
 ### license
@@ -17,6 +17,11 @@ If you're into SDR, or you're curious about how to write a
 MIT.  Use the code however you want.  Take it and build at least n - 1
 companies with it.
 [![BloodTrail](https://git.io/BloodTrail)](//git.io/memes)
+
+
+### design
+
+![Mindmap](http://i.imgur.com/ZBz2lyn.jpg)
 
 ### okay
 
