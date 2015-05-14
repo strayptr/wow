@@ -9,7 +9,7 @@ the [HackRF](https://github.com/mossmann/hackrf) via
 A secondary objective of the project is to serve as a learning tool.
 If you're into SDR, or you're curious about how to write a
   cross-platform GUI app, hopefully something in here might be useful
-  to you.  
+  to you. 
 
 
 ### license
@@ -111,23 +111,38 @@ Paste this into a Terminal window:
 
 cat <<'EOF' > wow_such_osx.sh
 
+# sudo privs will be required later for brew cask.
+sudo echo 
+
 # install Homebrew. http://brew.sh
-if [ -z "`which brew`" ]; then ruby -e "$(curl -fsSL
-  https://raw.githubusercontent.com/Homebrew/install/master/install)";
+if [ -z "`which brew`" ]; then
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
 fi
 
 # update Homebrew.
 brew update
 
 # install `realpath`
-if [ -z "`which realpath`" ]; then brew tap strayptr/tap brew install
-  realpath fi
+if [ -z "`which realpath`" ]; then
+  brew tap strayptr/tap
+  brew install realpath
+fi
 
 # install `git`
 if [ -z "`which git`" ]; then brew install git; fi
 
 # install `mono`.
-if [ -z "`which mono`" ]; then brew install mono; fi
+if [ -z "`which mono`" ]; then
+  # we also need libgdiplus, which doesn't come with `brew install
+  # mono`.  See https://github.com/Homebrew/homebrew/pull/34973
+  # Let's install mono from `brew cask` instead.
+
+  # install cask, the brew binary package manager.
+  brew install caskroom/cask/brew-cask
+
+  # install the full mono-mdk from cask.
+  brew cask install mono-mdk
+fi
 
 EOF
 
@@ -239,4 +254,13 @@ methodologies and start writing useful signal analysis code.
 Pull requests welcome!  I'd be like
 [![PogChamp](https://git.io/PogChamp)](//git.io/memes)
 
+
+### mindmap
+
+We use [XMind](https://www.xmind.net/) to keep track of notes,
+ideas, design decisions, cornercase troubleshooting issues, etc.
+
+Current mindmap:
+
+![Mindmap](http://i.imgur.com/ZBz2lyn.jpg)
 

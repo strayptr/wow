@@ -12,5 +12,13 @@
 /src/**/[Bb]in
 /src/**/[Dd]ebug*/
 /src/**/[Rr]elease*/
+/src/**/Packages/
+
+#
+# ignore some binary files.
+#
+/doc/images/
+/doc/media/memes/
+/doc/wow.png
 
 
