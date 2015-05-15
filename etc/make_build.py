@@ -142,8 +142,6 @@ def csharp_binfiles(path):
         # try to copy an executable by the same name, but no
         # extension.  (The convention I've chosen for a bundled exe.)
         if f.lower().endswith('.exe'):
-            import pdb
-            pdb.set_trace()
             bundle = mkpath(os.path.splitext(os.path.join(path, f))[0])
             if os.path.isfile(bundle):
                 yield bundle
