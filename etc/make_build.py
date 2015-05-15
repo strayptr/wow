@@ -129,6 +129,8 @@ def csharp_binfiles(path):
             '*.dll', 
             # executables,
             '*.exe', 
+            # the visualizer bundle,
+            'Visualizer',
             # and application configuration files (provides 
             # mono with info about how to run the exe)
             '*.exe.config'] 
@@ -139,12 +141,6 @@ def csharp_binfiles(path):
             '*.vshost.*' ]
     for f in listdir(path, include=include, exclude=exclude):
         yield f
-        # try to copy an executable by the same name, but no
-        # extension.  (The convention I've chosen for a bundled exe.)
-        if f.lower().endswith('.exe'):
-            bundle = mkpath(os.path.splitext(os.path.join(path, f))[0])
-            if os.path.isfile(bundle):
-                yield bundle
 
 def getslnpath(slnpath):
     # if slnpath is a file, convert it into the dir the file resides in.
