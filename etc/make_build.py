@@ -5,6 +5,7 @@ import os, errno
 import fnmatch
 import shutil
 import tarfile
+import platform
 
 #==============================================================================
 # Constants
@@ -114,6 +115,12 @@ def listdir(path, include=['*'], exclude=[]):
         # exclude files we don't care about.
         if not match_any(f, exclude):
             yield f
+            # try to copy an executable by the same name, but no
+            # extension.  (The convention I've chosen for a bundled exe.)
+            if f.lower().endswith('.exe'):
+                bundle = mkpath(os.path.splitext(os.path.join(path, f))[0])
+                if os.path.isfile(bundle):
+                    yield bundle
 
 def csharp_binfiles(path):
     """Return a list of files that should be bundled for a .NET project.
@@ -129,8 +136,6 @@ def csharp_binfiles(path):
             '*.dll', 
             # executables,
             '*.exe', 
-            # the visualizer bundle,
-            'Visualizer',
             # and application configuration files (provides 
             # mono with info about how to run the exe)
             '*.exe.config'] 
@@ -256,8 +261,13 @@ def joincmd(*args):
 
 def bundle():
     # bundle everything together.
-    cmd = ['PKG_CONFIG_PATH=/Library/Frameworks/Mono.framework//Versions/Current/lib/pkgconfig/']
-    cmd += ['CC="cc -arch i386 -framework CoreFoundation -lobjc -liconv"']
+    cmd = []
+
+    flags = ''
+    if platform.system().lower() == 'darwin':
+        flags += ' -framework CoreFoundation'
+        cmd += ['PKG_CONFIG_PATH=/Library/Frameworks/Mono.framework/Versions/Current/lib/pkgconfig/']
+    cmd += ['CC="cc -arch i386 %s -lobjc -liconv"' % flags]
     cmd += ['AS="as -arch i386"']
     path = quot(mkpath('src/csharp/Wow/Visualizer/bin/x86/Release'))
     cmd += ['mkbundle --deps --static']
