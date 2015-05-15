@@ -22,3 +22,9 @@
 /doc/wow.png
 
 
+#
+# ignore packaging tempfiles.
+#
+/temp.c
+/temp.s
+

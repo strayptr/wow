@@ -130,3 +130,9 @@ if [ -e "$ScriptPath/../config.sh" ]; then
   source "$ScriptPath/../config.sh"
 fi
 
+#==============================================================================
+# Determine the platform.
+#==============================================================================
+SystemPlatform=`uname`
+unamestr=`uname`
+
