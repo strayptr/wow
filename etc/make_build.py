@@ -260,15 +260,21 @@ def joincmd(*args):
     return ' \\\n'.join(args)
 
 def bundle():
+    # windows can't build bundles.
+    if platform.system().lower() == 'windows':
+        return
     # bundle everything together.
     cmd = []
-
     flags = ''
     if platform.system().lower() == 'darwin':
-        flags += ' -framework CoreFoundation'
+        flags += ' -framework CoreFoundation -lobjc -liconv'
         cmd += ['PKG_CONFIG_PATH=/Library/Frameworks/Mono.framework/Versions/Current/lib/pkgconfig/']
-    cmd += ['CC="cc -arch i386 %s -lobjc -liconv"' % flags]
-    cmd += ['AS="as -arch i386"']
+    if platform.system().lower() == 'linux':
+        cmd += ['CC="cc -arch i386 %s"' % flags]
+        cmd += ['AS="as -arch i386"']
+    else:
+        cmd += ['CC="cc -m32 %s"' % flags]
+        cmd += ['AS="as -32 -march i386"']
     path = quot(mkpath('src/csharp/Wow/Visualizer/bin/x86/Release'))
     cmd += ['mkbundle --deps --static']
     cmd += ['%s/Visualizer.exe' % path]

@@ -94,6 +94,9 @@ sudo apt-get install realpath -y
 # install Mono.  Time to go grab a cup of coffee Kappa
 sudo apt-get install mono-complete -y
 
+# install build dependencies.
+sudo apt-get install build-essential libc6-dev-i386 -y
+
 EOF
 
 # install the dependencies.
