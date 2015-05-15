@@ -22,7 +22,8 @@ def contains_whitespace(x):
     return WS.search(x)
 
 def quot(x):
-    return ("%s" % x) if contains_whitespace(x) else x
+    #return ("%s" % x) if contains_whitespace(x) else x
+    return WS.sub('\\ ', x) if contains_whitespace(x) else x
 
 # http://stackoverflow.com/questions/595305/python-path-of-script
 def scriptpath():
@@ -138,6 +139,14 @@ def csharp_binfiles(path):
             '*.vshost.*' ]
     for f in listdir(path, include=include, exclude=exclude):
         yield f
+        # try to copy an executable by the same name, but no
+        # extension.  (The convention I've chosen for a bundled exe.)
+        if f.lower().endswith('.exe'):
+            import pdb
+            pdb.set_trace()
+            bundle = mkpath(os.path.splitext(os.path.join(path, f))[0])
+            if os.path.isfile(bundle):
+                yield bundle
 
 def getslnpath(slnpath):
     # if slnpath is a file, convert it into the dir the file resides in.
@@ -248,9 +257,27 @@ def joinpath(*args):
 def mkpath(childpath):
     return os.path.normpath(os.path.join(projectpath(), childpath))
 
+def joincmd(*args):
+    return ' \\\n'.join(args)
+
+def bundle():
+    # bundle everything together.
+    cmd = ['PKG_CONFIG_PATH=/Library/Frameworks/Mono.framework//Versions/Current/lib/pkgconfig/']
+    cmd += ['CC="cc -arch i386 -framework CoreFoundation -lobjc -liconv"']
+    cmd += ['AS="as -arch i386"']
+    path = quot(mkpath('src/csharp/Wow/Visualizer/bin/x86/Release'))
+    cmd += ['mkbundle --deps --static']
+    cmd += ['%s/Visualizer.exe' % path]
+    cmd += ['%s/*.dll' % path]
+    cmd += ['-o %s/Visualizer' % path]
+    cmd = joincmd(*cmd)
+    print cmd
+    os.system(cmd)
+
 def gen_binaries():
     slnpath = mkpath('src/csharp/Wow/Wow.sln')
     os.system('xbuild /p:Configuration=Release "%s"' % slnpath)
+    bundle()
 
 def gen_build():
     # build the destination directory path.

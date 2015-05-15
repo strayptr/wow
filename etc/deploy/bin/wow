@@ -22,5 +22,5 @@ fi
 #==============================================================================
 # Execute the visualizer, passing in any commandline args.
 #==============================================================================
-mono "$ScriptPath/x86/Visualizer/Visualizer.exe" $*
+mono "$ScriptPath/x86/Visualizer/Visualizer" $*
 
