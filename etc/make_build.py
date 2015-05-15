@@ -269,8 +269,8 @@ def bundle():
     if platform.system().lower() == 'darwin':
         flags += ' -framework CoreFoundation -lobjc -liconv'
         cmd += ['PKG_CONFIG_PATH=/Library/Frameworks/Mono.framework/Versions/Current/lib/pkgconfig/']
-    if platform.system().lower() == 'linux':
-        cmd += ['CC="cc -arch i386 %s"' % flags]
+    if platform.system().lower() == 'darwin':
+        cmd += ['CC="cc -m32 -arch i386 %s"' % flags]
         cmd += ['AS="as -arch i386"']
     else:
         cmd += ['CC="cc -m32 %s"' % flags]

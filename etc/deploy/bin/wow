@@ -22,5 +22,10 @@ fi
 #==============================================================================
 # Execute the visualizer, passing in any commandline args.
 #==============================================================================
-mono "$ScriptPath/x86/Visualizer/Visualizer" $*
+if [[ "$SystemPlatform" == 'Linux' ]]; then
+  mono "$ScriptPath/x86/Visualizer/Visualizer.exe" $*
+else
+  "$ScriptPath/x86/Visualizer/Visualizer" $*
+fi
+
 
