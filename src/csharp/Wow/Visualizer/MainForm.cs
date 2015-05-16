@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common.DSP;
+using Utility;
+using System.Drawing.Drawing2D;
 
 namespace Visualizer
 {
@@ -27,6 +29,7 @@ namespace Visualizer
         public MainForm()
         {
             InitializeComponent();
+            splitMain.Panel1.Paint += Panel1_Paint;
         }
 
         //-----------------------------------------------------------------------------
@@ -82,6 +85,22 @@ namespace Visualizer
         {
             this.Done = true;
         }
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // pretty stuff.  like you.
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        //-----------------------------------------------------------------------------
+        void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+            GraphicsPath gp = Util.ToPath(Util.BorderOf(pnTestDropshadow));
+            gp = Util.ToClient(gp, this.splitMain.Panel1);
+            Util.Draw.Dropshadow(e.Graphics, gp, 128, 3.0f, 3.0f);
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // drag'n'drop.
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         //-----------------------------------------------------------------------------
         private void MainForm_DragEnter(object sender, DragEventArgs e)

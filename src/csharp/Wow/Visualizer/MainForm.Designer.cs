@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.spectrogram1 = new Controls.Visualization.Spectrogram();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            this.splitMain = new System.Windows.Forms.SplitContainer();
+            this.pnTestDropshadow = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
+            this.splitMain.Panel1.SuspendLayout();
+            this.splitMain.Panel2.SuspendLayout();
+            this.splitMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // spectrogram1
@@ -43,19 +45,31 @@
             this.spectrogram1.Size = new System.Drawing.Size(731, 524);
             this.spectrogram1.TabIndex = 0;
             // 
-            // splitContainer1
+            // splitMain
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitMain.Location = new System.Drawing.Point(0, 0);
+            this.splitMain.Name = "splitMain";
+            this.splitMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer1.Panel2
+            // splitMain.Panel1
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.spectrogram1);
-            this.splitContainer1.Size = new System.Drawing.Size(731, 625);
-            this.splitContainer1.SplitterDistance = 97;
-            this.splitContainer1.TabIndex = 1;
+            this.splitMain.Panel1.Controls.Add(this.pnTestDropshadow);
+            // 
+            // splitMain.Panel2
+            // 
+            this.splitMain.Panel2.Controls.Add(this.spectrogram1);
+            this.splitMain.Size = new System.Drawing.Size(731, 625);
+            this.splitMain.SplitterDistance = 97;
+            this.splitMain.TabIndex = 1;
+            // 
+            // pnTestDropshadow
+            // 
+            this.pnTestDropshadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pnTestDropshadow.Location = new System.Drawing.Point(103, 25);
+            this.pnTestDropshadow.Name = "pnTestDropshadow";
+            this.pnTestDropshadow.Size = new System.Drawing.Size(120, 33);
+            this.pnTestDropshadow.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -63,15 +77,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(731, 625);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.splitMain);
             this.Name = "MainForm";
             this.Text = "wow such signal";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.splitMain.Panel1.ResumeLayout(false);
+            this.splitMain.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitMain)).EndInit();
+            this.splitMain.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -79,7 +94,8 @@
         #endregion
 
         private Controls.Visualization.Spectrogram spectrogram1;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitMain;
+        private System.Windows.Forms.Panel pnTestDropshadow;
     }
 }
 
