@@ -54,6 +54,7 @@
             // 
             // splitMain.Panel1
             // 
+            this.splitMain.Panel1.BackColor = System.Drawing.Color.AliceBlue;
             this.splitMain.Panel1.Controls.Add(this.pnTestDropshadow);
             // 
             // splitMain.Panel2
@@ -65,7 +66,7 @@
             // 
             // pnTestDropshadow
             // 
-            this.pnTestDropshadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pnTestDropshadow.BackColor = System.Drawing.Color.LightSteelBlue;
             this.pnTestDropshadow.Location = new System.Drawing.Point(103, 25);
             this.pnTestDropshadow.Name = "pnTestDropshadow";
             this.pnTestDropshadow.Size = new System.Drawing.Size(120, 33);

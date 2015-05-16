@@ -20,6 +20,7 @@ namespace Visualizer
         //=============================================================================
 
         private ISignal _signal;
+        private readonly Font _font = new Font(FontFamily.GenericSansSerif, 10.0f);
 
         //=============================================================================
         // Methods
@@ -93,9 +94,31 @@ namespace Visualizer
         //-----------------------------------------------------------------------------
         void Panel1_Paint(object sender, PaintEventArgs e)
         {
-            GraphicsPath gp = Util.ToPath(Util.BorderOf(pnTestDropshadow));
-            gp = Util.ToClient(gp, this.splitMain.Panel1);
-            Util.Draw.Dropshadow(e.Graphics, gp, 128, 3.0f, 3.0f);
+            Graphics g = e.Graphics;
+
+            // draw a dropshadow for the panel.
+            {
+                GraphicsPath gp = Util.ToPath(Util.BorderOf(pnTestDropshadow));
+                Util.Draw.Dropshadow(g, gp, 128, 3.0f, 3.0f);
+            }
+
+            // draw a fake panel to the right of it, but with rounded corners!
+            // (We apple now.)
+            {
+                GraphicsPath gp = Util.RoundedRect(Util.Worldspace(pnTestDropshadow), 5.0f);
+                PointF pos = new PointF(2.0f * pnTestDropshadow.Width, 0.0f);
+                gp.Transform(Util.Mat.Translate(pos.X, pos.Y));
+                pos = Util.Add(pos, pnTestDropshadow.Location);
+                Util.Draw.Dropshadow(g, gp, 64, Color.MidnightBlue, 1.5f, 1.0f);
+                Util.Draw.Dropshadow(g, gp, 128 + 64, pnTestDropshadow.BackColor, 0.0f, 0.0f);
+                using (Pen p = new Pen(Color.FromArgb(64, Color.MidnightBlue)))
+                {
+                    g.DrawPath(p, gp);
+                }
+                pos = Util.Add(pos, new PointF(20.0f, 20.0f));
+                pos = Util.Add(pos, new PointF(pnTestDropshadow.Width, 0.0f));
+                Util.Draw.TextBubble(g, pos, "wow", Color.AliceBlue, Color.SteelBlue, _font, 5.0f);
+            }
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -266,6 +266,19 @@ namespace Utility
         }
 
         //----------------------------------------------------------------------
+        public static SizeF MeasureString(Graphics g, string text, Font font)
+        {
+            return g.MeasureString(text, font, (int)g.VisibleClipBounds.Width,
+                StringFormat.GenericTypographic);
+        }
+
+        //----------------------------------------------------------------------
+        public static Color Opaque(Color color)
+        {
+            return Color.FromArgb(255, color);
+        }
+
+        //----------------------------------------------------------------------
         // some drawing functions require an integer rectangle.
         // (Those functions are such squares!)
         //----------------------------------------------------------------------
@@ -539,6 +552,55 @@ namespace Utility
         }
 
         //======================================================================
+        // matrix helpers.
+        //======================================================================
+        public static class Mat
+        {
+            //----------------------------------------------------------------------
+            public static Matrix Translate(float dx, float dy)
+            {
+                Matrix mat = new Matrix();
+                mat.Translate(dx, dy);
+                return mat;
+            }
+
+            //----------------------------------------------------------------------
+            public static Matrix Remap(RectangleF before, RectangleF after)
+            {
+                Matrix mat = new Matrix();
+                // start with the value we want to remap.
+
+                // translate the value such that the "origin" becomes the left side
+                // of the `before` range.  Graphics programmers, this is like going
+                // from worldspace to localspace.
+                // i.e. map from [beforeLeft .. beforeRight] to [0.0 .. before.Size].
+                mat.Translate(-before.Location.X, -before.Location.Y);
+
+                // undo the "scaling that was being imposed by the `before` range."
+                // i.e. map from [0.0 .. before.Size] to [0.0 .. 1.0].
+                mat.Scale(1.0f / before.Width, 1.0f / before.Height);
+
+                // map from [0.0 .. 1.0] to [0.0 .. afterSize].
+                mat.Scale(after.Width, after.Height);
+
+                // now translate this back to worldspace, except we want to be
+                // relative to the `after` origin, not the `before` origin.
+                // i.e. map from [0.0 .. afterSize] to [afterLeft .. afterRight].
+                mat.Translate(after.Location.X, after.Location.Y);
+
+                // presto!
+                return mat;
+            }
+
+            //----------------------------------------------------------------------
+            // TODO.
+            //----------------------------------------------------------------------
+            //public static RectangleF TransformRect(RectangleF rect, Matrix xform)
+            //{
+            //}
+        }
+
+        //======================================================================
         // actual drawing operations.
         //======================================================================
         public static class Draw
@@ -547,19 +609,108 @@ namespace Utility
             // draws the dropshadow of a path.
             //----------------------------------------------------------------------
             public static void Dropshadow(Graphics g, GraphicsPath gp,
-                int alpha, float offsetInPixelsX, float offsetInPixelsY)
+                int alpha, Color color, float offsetInPixelsX, float offsetInPixelsY)
             {
                 Matrix matrix = new Matrix();
                 using (GraphicsPath path = (GraphicsPath)gp.Clone())
                 {
                     matrix.Translate(offsetInPixelsX, offsetInPixelsY);
                     path.Transform(matrix);
-                    using (Brush brush = new SolidBrush(Color.FromArgb(alpha, Color.Black)))
+                    using (Brush brush = new SolidBrush(Color.FromArgb(alpha, color)))
                     {
                         g.FillPath(brush, path);
                     }
                 }
             }
+            public static void Dropshadow(Graphics g, GraphicsPath gp,
+                int alpha, float offsetInPixelsX, float offsetInPixelsY)
+            {
+                Dropshadow(g, gp, alpha, Color.Black,
+                    offsetInPixelsX, offsetInPixelsY);
+            }
+
+            //----------------------------------------------------------------------
+            public static void TextBubble(Graphics g,
+                //RectangleF boundary,
+                PointF location,
+                string text,
+                Color bgColor, Color fgColor,
+                Font font, float feather, SizeF pad)
+            {
+                PointF tf = new PointF(pad.Width, pad.Height);
+                feather *= 2f;
+                SizeF size = MeasureString(g, text, font);
+                RectangleF rect = new RectangleF(location, size);
+                rect.Inflate((feather / 2f) + tf.X, (feather / 2f) + tf.Y);
+                //rect = Util.Within(boundary, rect);
+                GraphicsPath gp = Util.RoundedRect(rect, feather, feather);
+                Dropshadow(g, gp, 0x20, 2.6f, 2f);
+                using (PathGradientBrush brush = new PathGradientBrush(gp))
+                {
+                    brush.SurroundColors = new Color[] { Color.FromArgb(0x20, bgColor) };
+                    brush.CenterColor = Color.White;
+                    brush.CenterPoint = Util.Subtract(brush.CenterPoint, new PointF(rect.Width / 2f, rect.Height / 2f));
+                    g.FillPath(brush, gp);
+                }
+                using (Pen pen = new Pen(Color.FromArgb(0x60, Color.Black)))
+                {
+                    g.DrawPath(pen, gp);
+                }
+                using (SolidBrush brush2 = new SolidBrush(fgColor))
+                {
+                    g.DrawString(text, font, brush2, Util.Add(rect.Location, new PointF((tf.X + feather) / 2f, (tf.Y + feather) / 2f)));
+                }
+            }
+            public static void TextBubble(Graphics g,
+                //RectangleF boundary,
+                PointF location,
+                string text,
+                Color bgColor, Color fgColor,
+                Font font, float feather)
+            {
+                TextBubble(g,
+                    //boundary,
+                    location,
+                    text,
+                    bgColor, fgColor,
+                    font, feather, new SizeF(0f, 0f));
+            }
+        }
+
+        //----------------------------------------------------------------------
+        // I'm lumping this in with the "drawing operations" file section since
+        // this has the look and feel of a drawing operation in addition to
+        // merely being related to the concept of "drawing stuff."  It's still
+        // a utility though.
+        //----------------------------------------------------------------------
+        public static GraphicsPath RoundedRect(RectangleF rect, float featherX, float featherY)
+        {
+            // stand back, I'm about to do Graphics(tm)!
+            GraphicsPath path = new GraphicsPath();
+            float width = rect.Width;
+            float height = rect.Height;
+            float num3 = Clamp(0.0f, rect.Width, 2.0f * featherX);
+            float num4 = Clamp(0.0f, rect.Width, 2.0f * featherY);
+            SizeF size = new SizeF(num3, num4);
+            if (size.Width == 0.0f) size.Width = 0.01f;
+            if (size.Height == 0.0f) size.Height = 0.01f;
+            RectangleF ef2 = new RectangleF(new PointF(width - num3, height - num4), size);
+            RectangleF ef3 = new RectangleF(new PointF(0.0f, height - num4), size);
+            RectangleF ef4 = new RectangleF(new PointF(0.0f, 0.0f), size);
+            RectangleF ef5 = new RectangleF(new PointF(width - num3, 0.0f), size);
+            path.AddArc(ef2, 0.0f, 90.0f);
+            path.AddArc(ef3, 90.0f, 90.0f);
+            path.AddArc(ef4, 180.0f, 90.0f);
+            path.AddArc(ef5, 270.0f, 90.0f);
+            path.CloseFigure();
+            Matrix matrix = new Matrix();
+            matrix.Translate(rect.Location.X, rect.Location.Y);
+            path.Transform(matrix);
+            return path;
+        }
+        public static GraphicsPath RoundedRect(RectangleF rect, float feather)
+        {
+            return RoundedRect(rect, feather, feather);
         }
     }
 }
