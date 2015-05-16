@@ -675,6 +675,84 @@ namespace Utility
                     bgColor, fgColor,
                     font, feather, new SizeF(0f, 0f));
             }
+
+            //----------------------------------------------------------------------
+            public static void Tracker(Graphics g, RectangleF aTrackerRect, Color innerColor, Color outerColor)
+            {
+                Color[] colorArray;
+                using (GraphicsPath path = new GraphicsPath())
+                {
+                    path.AddEllipse(aTrackerRect);
+                    using (PathGradientBrush brush = new PathGradientBrush(path))
+                    {
+                        brush.CenterColor = innerColor;
+                        colorArray = new Color[] { outerColor };
+                        brush.SurroundColors = colorArray;
+                        colorArray = new Color[] { brush.CenterColor };
+                        brush.SurroundColors = colorArray;
+                        g.FillEllipse(new SolidBrush(brush.SurroundColors[0]), aTrackerRect);
+                        g.FillPath(brush, path);
+                    }
+                }
+                using (GraphicsPath path2 = new GraphicsPath())
+                {
+                    RectangleF rect = new RectangleF(aTrackerRect.Width * 0.1f, aTrackerRect.Height * 0.05f, aTrackerRect.Width * 0.8f, aTrackerRect.Height * 0.9f);
+                    path2.AddEllipse(aTrackerRect);
+                    rect.Offset(aTrackerRect.Location);
+                    path2.AddEllipse(rect);
+                    using (PathGradientBrush brush2 = new PathGradientBrush(path2))
+                    {
+                        brush2.CenterColor = Color.FromArgb(200, Color.White);
+                        colorArray = new Color[] { Color.FromArgb(0, Color.White) };
+                        brush2.SurroundColors = colorArray;
+                        g.FillPath(brush2, path2);
+                    }
+                }
+                using (GraphicsPath path3 = new GraphicsPath())
+                {
+                    RectangleF ef2 = new RectangleF(0f, aTrackerRect.Height * 0.33f, aTrackerRect.Width, aTrackerRect.Height);
+                    ef2.Offset(aTrackerRect.Location);
+                    path3.AddEllipse(ef2);
+                    using (Region region = new Region(path3))
+                    {
+                        using (GraphicsPath path4 = new GraphicsPath())
+                        {
+                            path4.AddEllipse(aTrackerRect);
+                            region.Complement(path4);
+                            using (SolidBrush brush3 = new SolidBrush(Color.FromArgb(30, Color.White)))
+                            {
+                                g.FillRegion(brush3, region);
+                            }
+                        }
+                    }
+                }
+                using (GraphicsPath path5 = new GraphicsPath())
+                {
+                    RectangleF ef3 = new RectangleF(0f, 0f, aTrackerRect.Width * 0.56f, aTrackerRect.Height * 0.248f);
+                    ef3.Offset((aTrackerRect.Width / 2f) - (ef3.Width / 2f), aTrackerRect.Height * 0.04f);
+                    ef3.Offset(aTrackerRect.Location);
+                    path5.AddEllipse(ef3);
+                    using (LinearGradientBrush brush4 = new LinearGradientBrush(path5.GetBounds(), Color.FromArgb(200, Color.White), Color.FromArgb(0, Color.White), LinearGradientMode.Vertical))
+                    {
+                        g.FillPath(brush4, path5);
+                    }
+                }
+                using (GraphicsPath path6 = new GraphicsPath())
+                {
+                    RectangleF ef4 = new RectangleF(0f, 0f, aTrackerRect.Width * 0.3f, aTrackerRect.Height * 0.15f);
+                    ef4.Offset((aTrackerRect.Width / 2f) - (ef4.Width / 2f), (aTrackerRect.Height - ef4.Height) - (aTrackerRect.Height * 0.03f));
+                    ef4.Offset(aTrackerRect.Location);
+                    path6.AddEllipse(ef4);
+                    using (LinearGradientBrush brush5 = new LinearGradientBrush(path6.GetBounds(), Color.FromArgb(0, Color.White), Color.FromArgb(100, Color.White), LinearGradientMode.Vertical))
+                    {
+                        g.FillPath(brush5, path6);
+                    }
+                }
+            }
+            public static void Tracker(Graphics g, RectangleF aTrackerRect)
+            {
+                Tracker(g, aTrackerRect, Color.FromArgb(2, 0x6b, 0xe1), Color.FromArgb(0, 6, 0x8a));
+            }
         }
 
         //----------------------------------------------------------------------

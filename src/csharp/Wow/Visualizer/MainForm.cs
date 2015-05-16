@@ -118,6 +118,8 @@ namespace Visualizer
                 pos = Util.Add(pos, new PointF(20.0f, 20.0f));
                 pos = Util.Add(pos, new PointF(pnTestDropshadow.Width, 0.0f));
                 Util.Draw.TextBubble(g, pos, "wow", Color.AliceBlue, Color.SteelBlue, _font, 5.0f);
+
+                Util.Draw.Tracker(g, new RectangleF(Util.Add(pos, new PointF(50.0f, 0.0f)), new SizeF(20.0f, 20.0f)));
             }
         }
 
