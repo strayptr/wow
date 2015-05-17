@@ -57,26 +57,32 @@
             // 
             this.splitMain.Panel2.Controls.Add(this.spectrogram1);
             this.splitMain.Size = new System.Drawing.Size(731, 625);
-            this.splitMain.SplitterDistance = 97;
+            this.splitMain.SplitterDistance = 106;
             this.splitMain.TabIndex = 1;
             // 
             // gradientPanel1
             // 
+            this.gradientPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.gradientPanel1.Border3DStyle = System.Windows.Forms.Border3DStyle.RaisedInner;
             this.gradientPanel1.GradientColor1 = System.Drawing.Color.AliceBlue;
             this.gradientPanel1.GradientColor2 = System.Drawing.Color.LightSteelBlue;
-            this.gradientPanel1.Location = new System.Drawing.Point(336, 50);
+            this.gradientPanel1.Location = new System.Drawing.Point(160, 12);
             this.gradientPanel1.Name = "gradientPanel1";
-            this.gradientPanel1.Size = new System.Drawing.Size(100, 33);
+            this.gradientPanel1.Size = new System.Drawing.Size(134, 79);
             this.gradientPanel1.TabIndex = 1;
             // 
             // pnTestDropshadow
             // 
+            this.pnTestDropshadow.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.pnTestDropshadow.Border3DStyle = System.Windows.Forms.Border3DStyle.RaisedInner;
             this.pnTestDropshadow.Controls.Add(this.label1);
             this.pnTestDropshadow.GradientColor1 = System.Drawing.Color.AliceBlue;
             this.pnTestDropshadow.GradientColor2 = System.Drawing.Color.LightSteelBlue;
             this.pnTestDropshadow.Location = new System.Drawing.Point(12, 12);
             this.pnTestDropshadow.Name = "pnTestDropshadow";
-            this.pnTestDropshadow.Size = new System.Drawing.Size(142, 71);
+            this.pnTestDropshadow.Size = new System.Drawing.Size(142, 79);
             this.pnTestDropshadow.TabIndex = 0;
             // 
             // label1
@@ -85,8 +91,8 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(3);
-            this.label1.Size = new System.Drawing.Size(142, 71);
+            this.label1.Padding = new System.Windows.Forms.Padding(4);
+            this.label1.Size = new System.Drawing.Size(142, 79);
             this.label1.TabIndex = 0;
             this.label1.Text = "Wow, this \"UI\" looks legitimately terrible.  But I\'m just playing around with dif" +
     "ferent possibilities at this point.";
@@ -96,7 +102,7 @@
             this.spectrogram1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spectrogram1.Location = new System.Drawing.Point(0, 0);
             this.spectrogram1.Name = "spectrogram1";
-            this.spectrogram1.Size = new System.Drawing.Size(731, 524);
+            this.spectrogram1.Size = new System.Drawing.Size(731, 515);
             this.spectrogram1.TabIndex = 0;
             // 
             // MainForm

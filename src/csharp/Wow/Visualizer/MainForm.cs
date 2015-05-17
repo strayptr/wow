@@ -96,20 +96,14 @@ namespace Visualizer
         {
             Graphics g = e.Graphics;
 
-            // draw a dropshadow for the panel.
-            {
-                GraphicsPath gp = Util.ToPath(Util.BorderOf(pnTestDropshadow));
-                Util.Draw.Dropshadow(g, gp, 128, 3.0f, 3.0f);
-            }
-
             // draw a fake panel to the right of it, but with rounded corners!
             // (We apple now.)
             {
                 GraphicsPath gp = Util.RoundedRect(Util.Worldspace(pnTestDropshadow), 5.0f);
-                PointF pos = new PointF(2.0f * pnTestDropshadow.Width, 0.0f);
+                PointF pos = new PointF(2.0f * pnTestDropshadow.Width + 2, 0.0f);
                 gp.Transform(Util.Mat.Translate(pos.X, pos.Y));
                 pos = Util.Add(pos, pnTestDropshadow.Location);
-                Util.Draw.Dropshadow(g, gp, 64, Color.MidnightBlue, 1.5f, 1.0f);
+                Util.Draw.Dropshadow(g, gp);
                 Util.Draw.Dropshadow(g, gp, 128 + 64, pnTestDropshadow.BackColor, 0.0f, 0.0f);
                 using (Pen p = new Pen(Color.FromArgb(64, Color.MidnightBlue)))
                 {

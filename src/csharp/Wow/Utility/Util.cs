@@ -189,9 +189,9 @@ namespace Utility
         // converts the border to a GraphicsPath.
         public static GraphicsPath ToPath(PointF[] points)
         {
-            GraphicsPath gp = new GraphicsPath();
-            gp.AddPolygon(points);
-            return gp;
+            GraphicsPath path = new GraphicsPath();
+            path.AddPolygon(points);
+            return path;
         }
 
         //----------------------------------------------------------------------
@@ -627,27 +627,42 @@ namespace Utility
         public static class Draw
         {
             //----------------------------------------------------------------------
-            // draws the dropshadow of a path.
+            // draws the dropshadow of a path.  This function was designed to
+            // have a bunch of configurable options.
             //----------------------------------------------------------------------
-            public static void Dropshadow(Graphics g, GraphicsPath gp,
+            public static void Dropshadow(Graphics g, GraphicsPath path,
                 int alpha, Color color, float offsetInPixelsX, float offsetInPixelsY)
             {
                 Matrix matrix = new Matrix();
-                using (GraphicsPath path = (GraphicsPath)gp.Clone())
+                using (GraphicsPath path2 = (GraphicsPath)path.Clone())
                 {
                     matrix.Translate(offsetInPixelsX, offsetInPixelsY);
-                    path.Transform(matrix);
+                    path2.Transform(matrix);
                     using (Brush brush = new SolidBrush(Color.FromArgb(alpha, color)))
                     {
-                        g.FillPath(brush, path);
+                        g.FillPath(brush, path2);
                     }
                 }
             }
-            public static void Dropshadow(Graphics g, GraphicsPath gp,
+            public static void Dropshadow(Graphics g, GraphicsPath path,
                 int alpha, float offsetInPixelsX, float offsetInPixelsY)
             {
-                Dropshadow(g, gp, alpha, Color.Black,
+                Dropshadow(g, path, alpha, Color.Black,
                     offsetInPixelsX, offsetInPixelsY);
+            }
+
+            //----------------------------------------------------------------------
+            // draws the dropshadow of a control.  This function was designed to
+            // have a certain look and feel to it, specific to `wow`.
+            //----------------------------------------------------------------------
+            public static void Dropshadow(Graphics g, Control control)
+            {
+                GraphicsPath path = Util.RoundedRect(control, 3.0f);
+                Dropshadow(g, path);
+            }
+            public static void Dropshadow(Graphics g, GraphicsPath path)
+            {
+                Util.Draw.Dropshadow(g, path, 48, Color.MidnightBlue, 1.5f, 1.0f);
             }
 
             //----------------------------------------------------------------------
@@ -664,18 +679,18 @@ namespace Utility
                 RectangleF rect = new RectangleF(location, size);
                 rect.Inflate((feather / 2f) + tf.X, (feather / 2f) + tf.Y);
                 //rect = Util.Within(boundary, rect);
-                GraphicsPath gp = Util.RoundedRect(rect, feather, feather);
-                Dropshadow(g, gp, 0x20, 2.6f, 2f);
-                using (PathGradientBrush brush = new PathGradientBrush(gp))
+                GraphicsPath path = Util.RoundedRect(rect, feather, feather);
+                Dropshadow(g, path, 0x20, 2.6f, 2f);
+                using (PathGradientBrush brush = new PathGradientBrush(path))
                 {
                     brush.SurroundColors = new Color[] { Color.FromArgb(0x20, bgColor) };
                     brush.CenterColor = Color.White;
                     brush.CenterPoint = Util.Subtract(brush.CenterPoint, new PointF(rect.Width / 2f, rect.Height / 2f));
-                    g.FillPath(brush, gp);
+                    g.FillPath(brush, path);
                 }
                 using (Pen pen = new Pen(Color.FromArgb(0x60, Color.Black)))
                 {
-                    g.DrawPath(pen, gp);
+                    g.DrawPath(pen, path);
                 }
                 using (SolidBrush brush2 = new SolidBrush(fgColor))
                 {
@@ -810,6 +825,10 @@ namespace Utility
         public static GraphicsPath RoundedRect(RectangleF rect, float feather)
         {
             return RoundedRect(rect, feather, feather);
+        }
+        public static GraphicsPath RoundedRect(Control control, float feather)
+        {
+            return RoundedRect(Worldspace(control), feather, feather);
         }
     }
 }
