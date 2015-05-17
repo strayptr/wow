@@ -1,4 +1,4 @@
-﻿namespace Controls
+﻿namespace Controls.Basic
 {
     partial class ChooseOrEnterValue
     {

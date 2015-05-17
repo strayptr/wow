@@ -49,11 +49,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChooseOrEnterValue.cs">
+    <Compile Include="Basic\ChooseOrEnterValue.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ChooseOrEnterValue.Designer.cs">
+    <Compile Include="Basic\ChooseOrEnterValue.Designer.cs">
       <DependentUpon>ChooseOrEnterValue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Basic\DoubleBufferedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Basic\DoubleBufferedPanel.Designer.cs">
+      <DependentUpon>DoubleBufferedPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Basic\DoubleBufferedUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Basic\DoubleBufferedUserControl.Designer.cs">
+      <DependentUpon>DoubleBufferedUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Basic\GradientPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Basic\GradientPanel.Designer.cs">
+      <DependentUpon>GradientPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Graphics\GLView.cs">
@@ -71,14 +89,19 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ChooseOrEnterValue.resx">
+    <EmbeddedResource Include="Basic\ChooseOrEnterValue.resx">
       <DependentUpon>ChooseOrEnterValue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visualization\Spectrogram.resx">
       <DependentUpon>Spectrogram.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{d597f633-7c18-4c8a-b7bd-26468881533c}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>$(SolutionDir)Tools\nuget install $(ProjectDir)packages.config -o $(SolutionDir)Packages</PreBuildEvent>

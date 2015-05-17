@@ -96,6 +96,10 @@
       <Project>{20235B91-D804-4ECA-9B55-E0FC40725040}</Project>
       <Name>Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{d597f633-7c18-4c8a-b7bd-26468881533c}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

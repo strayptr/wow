@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common.DSP;
+using Utility;
+using System.Drawing.Drawing2D;
 
 namespace Visualizer
 {
@@ -18,6 +20,7 @@ namespace Visualizer
         //=============================================================================
 
         private ISignal _signal;
+        private readonly Font _font = new Font(FontFamily.GenericSansSerif, 10.0f);
 
         //=============================================================================
         // Methods
@@ -27,6 +30,7 @@ namespace Visualizer
         public MainForm()
         {
             InitializeComponent();
+            splitMain.Panel1.Paint += Panel1_Paint;
         }
 
         //-----------------------------------------------------------------------------
@@ -82,6 +86,40 @@ namespace Visualizer
         {
             this.Done = true;
         }
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // pretty stuff.  (like you!)
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        //-----------------------------------------------------------------------------
+        void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            // draw a fake panel to the right of a real panel, but with rounded corners!
+            // (We apple now.)
+            {
+                GraphicsPath gp = Util.RoundedRect(Util.Worldspace(pnTestDropshadow), 5.0f);
+                PointF pos = new PointF(2.0f * pnTestDropshadow.Width + 2, 0.0f);
+                gp.Transform(Util.Mat.Translate(pos.X, pos.Y));
+                pos = Util.Add(pos, pnTestDropshadow.Location);
+                Util.Draw.Dropshadow(g, gp);
+                Util.Draw.Dropshadow(g, gp, 128 + 64, pnTestDropshadow.BackColor, 0.0f, 0.0f);
+                using (Pen p = new Pen(Color.FromArgb(64, Color.MidnightBlue)))
+                {
+                    g.DrawPath(p, gp);
+                }
+                pos = Util.Add(pos, new PointF(20.0f, 20.0f));
+                pos = Util.Add(pos, new PointF(pnTestDropshadow.Width, 0.0f));
+                Util.Draw.TextBubble(g, pos, "wow", Color.AliceBlue, Color.SteelBlue, _font, 5.0f);
+
+                Util.Draw.Tracker(g, new RectangleF(Util.Add(pos, new PointF(50.0f, 0.0f)), new SizeF(20.0f, 20.0f)));
+            }
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // drag'n'drop.
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         //-----------------------------------------------------------------------------
         private void MainForm_DragEnter(object sender, DragEventArgs e)
