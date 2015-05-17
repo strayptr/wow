@@ -197,12 +197,32 @@ def cp_r(src, dst):
 
 def make_tarfile(output_filename, source_dir):
     """Build a .tar.gz for an entire directory tree."""
-    with tarfile.open(output_filename, "w:gz") as tar:
-        tar.add(source_dir, arcname=os.path.basename(source_dir))
-    print 'cd %s; tar cvzf %s %s/' % (
-            quot(os.path.dirname(output_filename)),
+    print 'tar cvzf %s %s/' % (
             quot(os.path.basename(output_filename)),
             quot(os.path.basename(source_dir)))
+    with tarfile.open(output_filename, "w:gz") as tar:
+        tar.add(source_dir, arcname=os.path.basename(source_dir))
+
+# credit to http://stackoverflow.com/questions/1855095/how-to-create-a-zip-archive-of-a-directory
+import zipfile
+def zipdir(path, ziph):
+    # ziph is zipfile handle
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            ziph.write(os.path.join(root, file))
+
+def make_zipfile(output_filename, source_dir):
+    """Build a .zip for an entire directory tree."""
+    print 'zip %s %s/' % (
+            quot(os.path.basename(output_filename)),
+            quot(os.path.basename(source_dir)))
+    with zipfile.ZipFile(output_filename, 'w') as zipf:
+        cwd = os.getcwd()
+        try:
+            os.chdir(os.path.dirname(source_dir))
+            zipdir(os.path.basename(source_dir), zipf)
+        finally:
+            os.chdir(cwd)
 
 def sln_deploy(dst, slnpath):
     slnpath = getslnpath(slnpath)
@@ -294,6 +314,7 @@ def gen_build():
     vername = '%s-%s' % (ProgramName, args.version)
     # build the deployment tarball name.
     tarball = os.path.join(args.prefix, '%s.tar.gz' % vername)
+    zipfile = os.path.join(args.prefix, '%s.zip' % vername)
     # build the base path.
     base = os.path.join(args.prefix, vername)
     base = os.path.normpath(base)
@@ -308,8 +329,9 @@ def gen_build():
         if not query_yes_no(""""%s" already exists.  Okay to delete?""" % base, default="no"):
             sys.exit(1)
         rmrfdir(base)
-        # delete the tarball if it exists.
-        rmfile(tarball)
+    # delete the tarball if it exists.
+    rmfile(tarball)
+    rmfile(zipfile)
     dst = os.path.join(base, ProgramName)
     # create the destination dir.
     mkdir_p(dst)
@@ -318,9 +340,13 @@ def gen_build():
     # recursively copy the contents of the 'etc/bin' folder '$prefix/$vername/$ProgramName/bin'
     etc_deploy(dst, args.etcdir)
     # build the deployment tarball.
+    print 'cd %s' % quot(os.path.dirname(base))
     if os.path.exists(tarball):
-        raise Exception("Tarball file already exists: %s" % tarball)
+        raise Exception("Tarball already exists: %s" % tarball)
     make_tarfile(tarball, base)
+    if os.path.exists(zipfile):
+        raise Exception("Zipfile already exists: %s" % zipfile)
+    make_zipfile(zipfile, base)
 
 def main():
     gen_binaries()
