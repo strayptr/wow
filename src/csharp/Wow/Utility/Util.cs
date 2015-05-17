@@ -440,9 +440,10 @@ namespace Utility
         //----------------------------------------------------------------------
         // if a rect has negative width, then negate the width.  Same for height.
         //
-        // Seem strange?  Turns out negative heights occur a lot in 2D graphics,
-        // usually because people tend to confuse whether (0,0) is supposed to
-        // mean "upper-left" or "lower-left."  And by "people" I mean "I."
+        // Seem strange?  Turns out negative heights occur sometimes in 2D
+        // graphics, usually because people tend to confuse whether (0,0) is
+        // supposed to mean "upper-left" or "lower-left."  And by "people" I
+        // mean "I."
         //
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         // (The answer, by the way, is "(0,0) means lower-left."  Why?  Well,
@@ -478,14 +479,14 @@ namespace Utility
         // like a sock that's been turned inside-out, then turn it rightside-in.
         // But I couldn't very well call this "Unsock(rect)" now, could I?  Gawdd!
         //
-        // Okay, the real reason for this big ol' comment block is because I'm
-        // trying to maintain my motivation, and it was fun to write.  Selfish!
-        // Here's the boooooringgggg (but simple) explanation:
+        // Okay, the real reason for this big ol' comment block is because it
+        // was fun to write.  Selfish! Here's the boooooringgggg (but simple)
+        // explanation:
         //
         //  returns Rectangle(rect.Location, Abs(rect.Size))
         //
-        // (Oh who am I kidding, no one will ever read any of this but me.)
-        // (And you.)
+        // (Oh who am I kidding, no one will ever read any of this but me.  And
+        // you.)
         //----------------------------------------------------------------------
         public static RectangleF Unpretzel(RectangleF rect)
         {
@@ -570,22 +571,26 @@ namespace Utility
                 Matrix mat = new Matrix();
                 // start with the value we want to remap.
 
-                // translate the value such that the "origin" becomes the left side
+                // translate the value such that the "origin" becomes the location
                 // of the `before` range.  Graphics programmers, this is like going
                 // from worldspace to localspace.
-                // i.e. map from [beforeLeft .. beforeRight] to [0.0 .. before.Size].
+                // i.e. map from [before.Left .. before.Right] to [0.0 .. before.Width].
+                //  and map from [before.Top .. before.Bottom] to [0.0 .. before.Height].
                 mat.Translate(-before.Location.X, -before.Location.Y);
 
                 // undo the "scaling that was being imposed by the `before` range."
-                // i.e. map from [0.0 .. before.Size] to [0.0 .. 1.0].
+                // i.e. map X from [0.0 .. before.Width] to [0.0 .. 1.0].
+                // and map Y from [0.0 .. before.Height] to [0.0 .. 1.0].
                 mat.Scale(1.0f / before.Width, 1.0f / before.Height);
 
-                // map from [0.0 .. 1.0] to [0.0 .. afterSize].
+                // map X from [0.0 .. 1.0] to [0.0 .. after.Width].
+                // map Y from [0.0 .. 1.0] to [0.0 .. after.Height].
                 mat.Scale(after.Width, after.Height);
 
                 // now translate this back to worldspace, except we want to be
                 // relative to the `after` origin, not the `before` origin.
-                // i.e. map from [0.0 .. afterSize] to [afterLeft .. afterRight].
+                // i.e. map X from [0.0 .. after.Width] to [after.Left .. after.Right].
+                // and map Y from [0.0 .. after.Height] to [after.Top .. after.Bottom].
                 mat.Translate(after.Location.X, after.Location.Y);
 
                 // presto!
