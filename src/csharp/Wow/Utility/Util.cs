@@ -633,11 +633,9 @@ namespace Utility
             public static void Dropshadow(Graphics g, GraphicsPath path,
                 int alpha, Color color, float offsetInPixelsX, float offsetInPixelsY)
             {
-                Matrix matrix = new Matrix();
                 using (GraphicsPath path2 = (GraphicsPath)path.Clone())
                 {
-                    matrix.Translate(offsetInPixelsX, offsetInPixelsY);
-                    path2.Transform(matrix);
+                    path2.Transform(Util.Mat.Translate(offsetInPixelsX, offsetInPixelsY));
                     using (Brush brush = new SolidBrush(Color.FromArgb(alpha, color)))
                     {
                         g.FillPath(brush, path2);

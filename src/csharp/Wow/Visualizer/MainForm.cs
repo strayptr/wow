@@ -96,7 +96,7 @@ namespace Visualizer
         {
             Graphics g = e.Graphics;
 
-            // draw a fake panel to the right of it, but with rounded corners!
+            // draw a fake panel to the right of a real panel, but with rounded corners!
             // (We apple now.)
             {
                 GraphicsPath gp = Util.RoundedRect(Util.Worldspace(pnTestDropshadow), 5.0f);
