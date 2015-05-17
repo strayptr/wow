@@ -74,10 +74,10 @@
       <DependentUpon>GradientPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Graphics\GLView.cs">
+    <Compile Include="BasicGL\GLView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Graphics\GLView.Designer.cs">
+    <Compile Include="BasicGL\GLView.Designer.cs">
       <DependentUpon>GLView.cs</DependentUpon>
     </Compile>
     <Compile Include="Visualization\Spectrogram.cs">

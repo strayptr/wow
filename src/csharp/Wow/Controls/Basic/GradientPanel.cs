@@ -106,7 +106,7 @@ namespace Controls.Basic
         //-----------------------------------------------------------------------------
         protected override void OnPaint(PaintEventArgs e)
         {
-            System.Drawing.Graphics g = e.Graphics;
+            Graphics g = e.Graphics;
             if (Utility.Util.PaintingIsVisible(this, e))
             {
                 // draw an etched border.
@@ -121,7 +121,7 @@ namespace Controls.Basic
         //-----------------------------------------------------------------------------
         void _trackedParent_Paint(object sender, PaintEventArgs e)
         {
-            System.Drawing.Graphics g = e.Graphics;
+            Graphics g = e.Graphics;
             if (Utility.Util.PaintingIsVisible(this, e))
             {
                 if (this.Dropshadow)
@@ -135,7 +135,7 @@ namespace Controls.Basic
         //-----------------------------------------------------------------------------
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            System.Drawing.Graphics g = e.Graphics;
+            Graphics g = e.Graphics;
             if (Utility.Util.PaintingIsVisible(this, e))
             {
                 // draw the gradient from the upper-left corner to the lower-

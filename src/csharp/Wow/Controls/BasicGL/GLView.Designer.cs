@@ -1,4 +1,4 @@
-﻿namespace Controls.Graphics
+﻿namespace Controls.BasicGL
 {
     partial class GLView
     {

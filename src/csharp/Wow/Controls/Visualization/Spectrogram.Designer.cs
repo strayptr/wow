@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.glView1 = new Controls.Graphics.GLView();
+            this.glView1 = new Controls.BasicGL.GLView();
             this.SuspendLayout();
             // 
             // glView1
@@ -54,6 +54,6 @@
 
         #endregion
 
-        private Graphics.GLView glView1;
+        private BasicGL.GLView glView1;
     }
 }

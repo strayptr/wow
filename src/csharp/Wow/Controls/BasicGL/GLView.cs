@@ -11,7 +11,7 @@ using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 
-namespace Controls.Graphics
+namespace Controls.BasicGL
 {
     public partial class GLView : GLControl
     {
