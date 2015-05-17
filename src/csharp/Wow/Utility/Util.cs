@@ -279,6 +279,22 @@ namespace Utility
         }
 
         //----------------------------------------------------------------------
+        // returns whether the clipping region that we'd be drawing onto is
+        // actually visible.  This way we can skip drawing operations if they'd
+        // cover zero pixels.
+        //----------------------------------------------------------------------
+        public static bool PaintingIsVisible(Control control, PaintEventArgs e)
+        {
+            if (!control.Visible)
+                return false;
+            if (e.ClipRectangle.Width < 0)
+                return false;
+            if (e.ClipRectangle.Height < 0)
+                return false;
+            return true;
+        }
+
+        //----------------------------------------------------------------------
         // some drawing functions require an integer rectangle.
         // (Those functions are such squares!)
         //----------------------------------------------------------------------

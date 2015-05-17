@@ -28,22 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.spectrogram1 = new Controls.Visualization.Spectrogram();
             this.splitMain = new System.Windows.Forms.SplitContainer();
-            this.pnTestDropshadow = new System.Windows.Forms.Panel();
+            this.gradientPanel1 = new Controls.Basic.GradientPanel();
+            this.pnTestDropshadow = new Controls.Basic.GradientPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.spectrogram1 = new Controls.Visualization.Spectrogram();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
             this.splitMain.SuspendLayout();
+            this.pnTestDropshadow.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // spectrogram1
-            // 
-            this.spectrogram1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spectrogram1.Location = new System.Drawing.Point(0, 0);
-            this.spectrogram1.Name = "spectrogram1";
-            this.spectrogram1.Size = new System.Drawing.Size(731, 524);
-            this.spectrogram1.TabIndex = 0;
             // 
             // splitMain
             // 
@@ -55,6 +50,7 @@
             // splitMain.Panel1
             // 
             this.splitMain.Panel1.BackColor = System.Drawing.Color.AliceBlue;
+            this.splitMain.Panel1.Controls.Add(this.gradientPanel1);
             this.splitMain.Panel1.Controls.Add(this.pnTestDropshadow);
             // 
             // splitMain.Panel2
@@ -64,13 +60,44 @@
             this.splitMain.SplitterDistance = 97;
             this.splitMain.TabIndex = 1;
             // 
+            // gradientPanel1
+            // 
+            this.gradientPanel1.GradientColor1 = System.Drawing.Color.AliceBlue;
+            this.gradientPanel1.GradientColor2 = System.Drawing.Color.LightSteelBlue;
+            this.gradientPanel1.Location = new System.Drawing.Point(336, 50);
+            this.gradientPanel1.Name = "gradientPanel1";
+            this.gradientPanel1.Size = new System.Drawing.Size(100, 33);
+            this.gradientPanel1.TabIndex = 1;
+            // 
             // pnTestDropshadow
             // 
-            this.pnTestDropshadow.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.pnTestDropshadow.Location = new System.Drawing.Point(103, 25);
+            this.pnTestDropshadow.Controls.Add(this.label1);
+            this.pnTestDropshadow.GradientColor1 = System.Drawing.Color.AliceBlue;
+            this.pnTestDropshadow.GradientColor2 = System.Drawing.Color.LightSteelBlue;
+            this.pnTestDropshadow.Location = new System.Drawing.Point(12, 12);
             this.pnTestDropshadow.Name = "pnTestDropshadow";
-            this.pnTestDropshadow.Size = new System.Drawing.Size(120, 33);
+            this.pnTestDropshadow.Size = new System.Drawing.Size(142, 71);
             this.pnTestDropshadow.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(3);
+            this.label1.Size = new System.Drawing.Size(142, 71);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Wow, this \"UI\" looks legitimately terrible.  But I\'m just playing around with dif" +
+    "ferent possibilities at this point.";
+            // 
+            // spectrogram1
+            // 
+            this.spectrogram1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spectrogram1.Location = new System.Drawing.Point(0, 0);
+            this.spectrogram1.Name = "spectrogram1";
+            this.spectrogram1.Size = new System.Drawing.Size(731, 524);
+            this.spectrogram1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -88,6 +115,7 @@
             this.splitMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).EndInit();
             this.splitMain.ResumeLayout(false);
+            this.pnTestDropshadow.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -96,7 +124,9 @@
 
         private Controls.Visualization.Spectrogram spectrogram1;
         private System.Windows.Forms.SplitContainer splitMain;
-        private System.Windows.Forms.Panel pnTestDropshadow;
+        private Controls.Basic.GradientPanel pnTestDropshadow;
+        private System.Windows.Forms.Label label1;
+        private Controls.Basic.GradientPanel gradientPanel1;
     }
 }
 
