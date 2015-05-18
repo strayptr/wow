@@ -254,7 +254,7 @@ parser.add_argument('-p', '--prefix',
     help="The destination where the binaries will be placed." )
      
 parser.add_argument('-s', '--sourcedir',
-    default="src/csharp/Wow",
+    default="src/",
     help="The directory containing the project's code." )
      
 parser.add_argument('-e', '--etcdir',
@@ -304,9 +304,20 @@ def bundle():
     print cmd
     os.system(cmd)
 
+def sln_files():
+    cspath = joinpath(args.sourcedir, 'csharp')
+    for subfolder in subfolders(cspath):
+        slnfile = subfolder + '.sln'
+        slnpath = joinpath(cspath, subfolder, slnfile)
+        if os.path.isfile(slnpath):
+            yield slnpath
+
 def gen_binaries():
-    slnpath = mkpath('src/csharp/Wow/Wow.sln')
-    os.system('xbuild /p:Configuration=Release "%s"' % slnpath)
+    import pdb
+    pdb.set_trace()
+    # build each sln.
+    for slnpath in sln_files():
+        os.system('xbuild /p:Configuration=Release "%s"' % slnpath)
     bundle()
 
 def gen_build():
@@ -336,7 +347,10 @@ def gen_build():
     # create the destination dir.
     mkdir_p(dst)
     # deploy sln binaries.
-    sln_deploy(dst, args.sourcedir)
+    import pdb
+    pdb.set_trace()
+    for slnpath in sln_files():
+        sln_deploy(dst, os.path.dirname(slnpath))
     # recursively copy the contents of the 'etc/bin' folder '$prefix/$vername/$ProgramName/bin'
     etc_deploy(dst, args.etcdir)
     # build the deployment tarball.
