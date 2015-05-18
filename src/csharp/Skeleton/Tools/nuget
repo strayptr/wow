@@ -1,0 +1,5 @@
+#!/bin/bash
+scriptpath="`dirname "$BASH_SOURCE"`"
+
+mono "$scriptpath/nuget.exe" $*
+
